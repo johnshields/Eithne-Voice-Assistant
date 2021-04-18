@@ -12,8 +12,8 @@ r = sr.Recognizer()
 
 def eithne_talk(audio_string):
     talk = gTTS(text=audio_string, lang='en')
-    ran = random.randint(1, 100000)
-    audio_file = 'audio-' + str(ran) + '.mp3'
+    ran_num = random.randint(1, 100000)
+    audio_file = 'audio-' + str(ran_num) + '.mp3'
     talk.save(audio_file)
     playsound.playsound(audio_file)
     print(audio_string)
@@ -27,6 +27,7 @@ def record_audio(ask=''):
             eithne_talk(ask)
         # Listen for input.
         audio = r.listen(source)
+        print('No voice input heard')
         user_input = ''
         try:
             user_input = r.recognize_google(audio)
@@ -39,17 +40,24 @@ def record_audio(ask=''):
 
 def respond(user_input):
     if 'what time is it' in user_input:
-        eithne_talk('The time is ' + ctime())
+        t = ctime().split(' ')[3].split(':')[0:2]
+        if t[0] == '00':
+            hours = '12'
+        else:
+            hours = t[0]
+        minutes = t[1]
+        t = hours + ' hours and ' + minutes + ' minutes'
+        eithne_talk('the time is ' + str(t))
     if 'search' in user_input:
-        search = record_audio('What would you like to search for?')
+        search = record_audio('what would you like to search for')
         url = 'https://google.com/search?q=' + search
         webbrowser.get().open(url)
-        eithne_talk('Here is what I found for ' + search)
+        eithne_talk('here is what I found for ' + search)
     if 'find location' in user_input:
-        location = record_audio('What is the location?')
+        location = record_audio('what is the location')
         url = 'https://google.nl/maps/place/' + location + '/&amp;'
         webbrowser.get().open(url)
-        eithne_talk('Here is the location of ' + location)
+        eithne_talk('here is the location of ' + location)
     if 'turn off' in user_input:
         eithne_talk('Goodbye')
         exit()
@@ -60,6 +68,7 @@ def eithne():
     time.sleep(1)
     while 1:
         user_input = record_audio()
+        print(user_input)
         respond(user_input)
 
 
