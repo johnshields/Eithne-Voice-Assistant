@@ -4,16 +4,16 @@ Main Controller of Eithne.
 
 Reference: https://youtu.be/x8xjj6cR9Nc
 """
-
-
-import speech_recognition as sr
-import webbrowser
-import time
-import playsound
 import os
 import random
-from gtts import gTTS
+import time
+import webbrowser
 from time import ctime
+
+import playsound
+import speech_recognition as sr
+from gtts import gTTS
+
 from user_phrases import user_said
 
 r = sr.Recognizer()
