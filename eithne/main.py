@@ -1,3 +1,11 @@
+"""
+John Shields - G00348436
+Main Controller of Eithne.
+
+Reference: https://youtu.be/x8xjj6cR9Nc
+"""
+
+
 import speech_recognition as sr
 import webbrowser
 import time
@@ -52,18 +60,22 @@ def get_time():
 
 
 def respond(user_input):
+    # Tell user the time.
     if 'time' in user_said(user_input):
         eithne_talk('The time is ' + str(get_time()))
+    # Let user do a google search.
     if 'search' in user_said(user_input):
         search = record_audio('What would you like to search for?')
         url = 'https://google.com/search?q=' + search
         webbrowser.get().open(url)
         eithne_talk('Here is what I found for ' + search)
+    # Let user find a location.
     if 'location' in user_said(user_input):
         location = record_audio('What is the location?')
         url = 'https://google.nl/maps/place/' + location + '/&amp;'
         webbrowser.get().open(url)
         eithne_talk('Here is the location of ' + location)
+    # Allow user to stop Eithne.
     if 'stop' in user_said(user_input):
         eithne_talk('farewell')
         exit()
