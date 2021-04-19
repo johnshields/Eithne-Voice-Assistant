@@ -23,10 +23,13 @@ r = sr.Recognizer()
 
 
 def eithne_talk(audio_string):
+    # Set up Eithne's vocals.
     talk = gTTS(text=audio_string, lang='en')
     ran_num = random.randint(1, 100000)
+    # Set to random mp3 file and save.
     audio_file = 'audio-' + str(ran_num) + '.mp3'
     talk.save(audio_file)
+    # Play what Eithne said then remove the mp3.
     playsound.playsound(audio_file)
     print('Eithne said:', audio_string)
     os.remove(audio_file)
@@ -62,8 +65,8 @@ def respond(user_input):
         user_input = ''
     # Tell user the time.
     if 'time' == user_said(user_input):
-        t = datetime.datetime.now().strftime("%H:%M:%S")
-        eithne_talk('The time is ' + str(t) + '12')
+        t = datetime.datetime.now().strftime("%H:%M")
+        eithne_talk('The time is ' + t)
         user_input = ''
     # Let user do a google search.
     if 'search' == user_said(user_input):

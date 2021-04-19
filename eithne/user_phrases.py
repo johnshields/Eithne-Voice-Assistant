@@ -12,10 +12,13 @@ def user_said(phrase):
     # User wants to find a location.
     if 'location' in p or 'maps' in p or 'find location' in p or 'where can i find' in p:
         phrase = 'location'
+    # User wants to thank Eithne.
     if 'thank you' in p or 'thanks' in p or 'sound' in p or 'cheers' in p:
         phrase = 'thank'
+    # User wants to use wiki.
     if 'wikipedia' in p or 'wiki' in p:
         phrase = 'wikipedia'
+    # User wants to know the VA's name.
     if 'what is your name' in p or 'who are you' in p:
         phrase = 'name'
     return phrase
