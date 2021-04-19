@@ -1,22 +1,38 @@
-def user_ask_for_time(phrase):
+def user_said(phrase):
+    # User asks the time.
     if 'what time is it' in phrase:
         phrase = 'time'
-    if 'what is the time' in phrase:
+    elif 'what is the time' in phrase:
         phrase = 'time'
-    if 'time' in phrase:
+    elif 'time' in phrase:
         phrase = 'time'
-    if 'clock' in phrase:
+    elif 'clock' in phrase:
         phrase = 'time'
-    return phrase
-
-
-def stop_listening(phrase):
+    # User wants Eithne to stop listening.
     if 'turn off' in phrase:
         phrase = 'stop'
-    if 'stop listening' in phrase:
+    elif 'stop listening' in phrase:
         phrase = 'stop'
-    if 'exit' in phrase:
+    elif 'exit' in phrase:
         phrase = 'stop'
-    if 'thank you for your service' in phrase:
+    elif 'thank you for your service' in phrase:
         phrase = 'stop'
+    # User wants do a google search.
+    if 'search' in phrase:
+        phrase = 'search'
+    elif 'do a search' in phrase:
+        phrase = 'search'
+    elif 'google' in phrase:
+        phrase = 'search'
+    elif 'google search' in phrase:
+        phrase = 'search'
+    # User wants to find a location.
+    if 'location' in phrase:
+        phrase = 'location'
+    elif 'maps' in phrase:
+        phrase = 'location'
+    elif 'find location' in phrase:
+        phrase = 'search'
+    elif 'where can i find' in phrase:
+        phrase = 'search'
     return phrase

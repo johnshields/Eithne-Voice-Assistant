@@ -6,8 +6,7 @@ import os
 import random
 from gtts import gTTS
 from time import ctime
-
-from user_phrases import user_ask_for_time, stop_listening
+from user_phrases import user_said
 
 r = sr.Recognizer()
 
@@ -53,24 +52,25 @@ def get_time():
 
 
 def respond(user_input):
-    if 'time' in user_ask_for_time(user_input):
+    if 'time' in user_said(user_input):
         eithne_talk('The time is ' + str(get_time()))
-    if 'search' in user_input:
+    if 'search' in user_said(user_input):
         search = record_audio('What would you like to search for?')
         url = 'https://google.com/search?q=' + search
         webbrowser.get().open(url)
         eithne_talk('Here is what I found for ' + search)
-    if 'find location' in user_input:
+    if 'location' in user_said(user_input):
         location = record_audio('What is the location?')
         url = 'https://google.nl/maps/place/' + location + '/&amp;'
         webbrowser.get().open(url)
         eithne_talk('Here is the location of ' + location)
-    if 'stop' in stop_listening(user_input):
+    if 'stop' in user_said(user_input):
         eithne_talk('farewell')
         exit()
 
 
 def eithne():
+    print('====== Eithne, Voice Assistant ======')
     eithne_talk('Hello, my name is Eithne. How can I help?')
     time.sleep(1)
     while 1:
