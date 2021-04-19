@@ -2,16 +2,19 @@
 John Shields - G00348436
 Main Controller of Eithne.
 
-Reference: https://youtu.be/x8xjj6cR9Nc
+References:
+https://youtu.be/x8xjj6cR9Nc
+https://towardsdatascience.com/how-to-build-your-own-ai-personal-assistant-using-python-f57247b4494b
 """
+import datetime
 import os
 import random
 import time
-import webbrowser
-from time import ctime
+import webbrowser as wb
 
 import playsound
 import speech_recognition as sr
+import wikipedia
 from gtts import gTTS
 
 from user_phrases import user_said
@@ -29,7 +32,7 @@ def eithne_talk(audio_string):
     os.remove(audio_file)
 
 
-def record_audio(ask=''):
+def user_audio(ask=''):
     # Create a microphone instance.
     with sr.Microphone() as source:
         if ask:
@@ -38,55 +41,72 @@ def record_audio(ask=''):
         audio = r.listen(source)
         user_input = ''
         try:
-            user_input = r.recognize_google(audio)
+            user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
-            print('No voice input heard')
+            eithne_talk('Did you say something?')
+            user_input = ''
         except sr.RequestError:
-            eithne_talk('Sorry, my speech service is down')
+            eithne_talk('Sorry, my respond service is down')
             exit()
         print('$', user_input.lower())
         return user_input.lower()
 
 
-def get_time():
-    t = ctime().split(' ')[3].split(':')[0:2]
-    if t[0] == '00':
-        hours = '12'
-    else:
-        hours = t[0]
-    minutes = t[1]
-    t = hours + ' hours and ' + minutes + ' minutes'
-    return t
-
-
 def respond(user_input):
+    if 'name' == user_said(user_input):
+        name = user_audio('My name is Eithne. What is yours?')
+        eithne_talk('Hi ' + name)
+    # Allow user to thank Eithne.
+    if 'thank' == user_said(user_input):
+        eithne_talk('No bother')
+        user_input = ''
     # Tell user the time.
-    if 'time' in user_said(user_input):
-        eithne_talk('The time is ' + str(get_time()))
+    if 'time' == user_said(user_input):
+        t = datetime.datetime.now().strftime("%H:%M:%S")
+        eithne_talk('The time is ' + str(t) + '12')
+        user_input = ''
     # Let user do a google search.
-    if 'search' in user_said(user_input):
-        search = record_audio('What would you like to search for?')
+    if 'search' == user_said(user_input):
+        search = user_audio('What would you like to search for?')
         url = 'https://google.com/search?q=' + search
-        webbrowser.get().open(url)
+        wb.get().open(url)
         eithne_talk('Here is what I found for ' + search)
+        user_input = ''
     # Let user find a location.
-    if 'location' in user_said(user_input):
-        location = record_audio('What is the location?')
+    if 'location' == user_said(user_input):
+        location = user_audio('What is the location?')
         url = 'https://google.nl/maps/place/' + location + '/&amp;'
-        webbrowser.get().open(url)
+        wb.get().open(url)
         eithne_talk('Here is the location of ' + location)
+        user_input = ''
+    if 'wikipedia' == user_said(user_input):
+        wiki = user_audio('What would you like to know more about?')
+        results = wikipedia.summary(wiki, sentences=3)
+        eithne_talk('According to wikipedia ' + results)
     # Allow user to stop Eithne.
-    if 'stop' in user_said(user_input):
+    if 'stop' == user_said(user_input):
         eithne_talk('farewell')
         exit()
 
 
+# Greet the user.
+def greeting():
+    hour = datetime.datetime.now().hour
+    if 0 <= hour < 12:
+        eithne_talk("Hello, Good Morning")
+    elif 12 <= hour < 18:
+        eithne_talk("Hello, Good Afternoon")
+    else:
+        eithne_talk("Hello, Good Evening")
+
+
 def eithne():
     print('====== Eithne, Voice Assistant ======')
-    eithne_talk('Hello, my name is Eithne. How can I help?')
+    greeting()
+    eithne_talk('How can I help?')
     time.sleep(1)
     while 1:
-        user_input = record_audio()
+        user_input = user_audio()
         respond(user_input)
 
 
