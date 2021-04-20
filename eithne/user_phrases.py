@@ -1,3 +1,10 @@
+"""
+John Shields - G00348436
+User Phrases Controller
+To allow users to have an option of what to say.
+"""
+
+
 def user_said(phrase):
     p = phrase
     # User wants Eithne to stop listening.
@@ -27,6 +34,6 @@ def user_said(phrase):
     # User wants to surf a website.
     if 'website' in p or 'surf the web' in p or 'internet' in p:
         p = 'web'
-    if 'chat' in p or 'can we talk' in p or 'talk to me' in p:
+    if 'chat' in p or 'can we talk' in p or 'talk to me' in p or 'can we have a talk' in p or 'can we chat':
         p = 'chat'
     return p

@@ -5,9 +5,10 @@ Main Controller of Eithne.
 References:
 https://youtu.be/x8xjj6cR9Nc
 https://towardsdatascience.com/how-to-build-your-own-ai-personal-assistant-using-python-f57247b4494b
-https://pypi.org/project/ChatterBot/
+https://chatterbot.readthedocs.io/en/stable/
 """
 import datetime as dt
+import logging
 import os
 import random
 import time
@@ -24,8 +25,20 @@ from user_phrases import user_said
 
 # Load in recognizer.
 r = sr.Recognizer()
+
+# Debugging
+logging.basicConfig(level=logging.INFO)
+
 # Set up Eithne as a chat bot.
-eithne_bot = ChatBot('Eithne')
+eithne_bot = ChatBot(
+    'Eithne Bot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch'
+    ],
+    database_uri='sqlite:///database.db'
+)
+
 # Train the bot.
 trainer = ChatterBotCorpusTrainer(eithne_bot)
 trainer.train("chatterbot.corpus.english.conversations")
@@ -63,6 +76,22 @@ def user_audio(ask=''):
             exit()
         print('$', user_input.lower())
         return user_input.lower()
+
+
+# Have a chat with Eithne.
+def conversation():
+    sure = ['Sure!', 'What would you like to talk about?', 'Shoot!']
+    message = sure[random.randint(0, len(sure) - 1)]
+    eithne_talk(message)
+    print('having a chat...')
+    time.sleep(1)
+    while 1:
+        try:
+            message = user_audio()
+            response = eithne_bot.get_response(message)
+            eithne_talk(str(response))
+        except (KeyboardInterrupt, EOFError, SystemExit):
+            break
 
 
 # Eithne responds to the user bases on their request.
@@ -104,20 +133,11 @@ def respond(user_input):
         eithne_talk(surf + ' opened')
     # Allow user to have a chat with Eithne.
     if 'chat' == user_said(user_input):
-        conversation(user_input)
+        conversation()
     # Allow user to stop Eithne.
     if 'stop' == user_said(user_input):
         eithne_talk('farewell')
         exit()
-
-
-# Have a chat with Eithne.
-def conversation(chat):
-    print('having a chat...')
-    time.sleep(1)
-    while 1:
-        response = eithne_bot.get_response(chat)
-        user_audio(str(response))
 
 
 # Greet the user.
