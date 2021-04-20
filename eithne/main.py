@@ -22,12 +22,16 @@ from gtts import gTTS
 from features import google, maps, on_this_day, youtube, websites
 from user_phrases import user_said
 
+# Load in recognizer.
 r = sr.Recognizer()
+# Set up Eithne as a chat bot.
 eithne_bot = ChatBot('Eithne')
+# Train the bot.
 trainer = ChatterBotCorpusTrainer(eithne_bot)
 trainer.train("chatterbot.corpus.english.conversations")
 
 
+# Function to use google text to speech for Eithne's voice.
 def eithne_talk(audio_string):
     # Set up Eithne's vocals.
     talk = gTTS(text=audio_string, lang='en')
@@ -41,6 +45,7 @@ def eithne_talk(audio_string):
     os.remove(audio_file)
 
 
+# Set up the microphone for the user.
 def user_audio(ask=''):
     # Create a microphone instance.
     with sr.Microphone() as source:
@@ -60,6 +65,7 @@ def user_audio(ask=''):
         return user_input.lower()
 
 
+# Eithne responds to the user bases on their request.
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
     if 'name' == user_said(user_input):
@@ -96,6 +102,7 @@ def respond(user_input):
         surf = user_audio('Which website would you like to surf?')
         websites(surf)
         eithne_talk(surf + ' opened')
+    # Allow user to have a chat with Eithne.
     if 'chat' == user_said(user_input):
         conversation(user_input)
     # Allow user to stop Eithne.
@@ -104,14 +111,13 @@ def respond(user_input):
         exit()
 
 
+# Have a chat with Eithne.
 def conversation(chat):
     print('having a chat...')
     time.sleep(1)
     while 1:
         response = eithne_bot.get_response(chat)
         user_audio(str(response))
-        if 'stop talking' in chat:
-            break
 
 
 # Greet the user.
@@ -125,6 +131,7 @@ def greeting():
         eithne_talk('Good Evening')
 
 
+# Main function to boot up Eithne and greet the user.
 def eithne():
     print('====== Eithne, Voice Assistant ======')
     greeting()
