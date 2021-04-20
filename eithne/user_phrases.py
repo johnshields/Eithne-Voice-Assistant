@@ -21,4 +21,12 @@ def user_said(phrase):
     # User wants to know the VA's name.
     if 'what is your name' in p or 'who are you' in p:
         phrase = 'name'
+    # User whats to know what happened today.
+    if 'history' in p or 'what happened today' in p or 'history of today' in p:
+        phrase = 'history'
+    # User wants to search youtube.
+    if 'youtube' in p or 'video' in p or 'search youtube' in p:
+        phrase = 'youtube'
+    if 'email' in p or 'mail' in p:
+        phrase = 'email'
     return phrase
