@@ -27,4 +27,6 @@ def user_said(phrase):
     # User wants to surf a website.
     if 'website' in p or 'surf the web' in p or 'internet' in p:
         p = 'web'
+    if 'chat' in p or 'can we talk' in p or 'talk to me' in p:
+        p = 'chat'
     return p

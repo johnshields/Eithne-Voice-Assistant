@@ -5,6 +5,7 @@ Main Controller of Eithne.
 References:
 https://youtu.be/x8xjj6cR9Nc
 https://towardsdatascience.com/how-to-build-your-own-ai-personal-assistant-using-python-f57247b4494b
+https://pypi.org/project/ChatterBot/
 """
 import datetime as dt
 import os
@@ -14,12 +15,17 @@ import time
 import playsound
 import speech_recognition as sr
 import wikipedia
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 from gtts import gTTS
 
 from features import google, maps, on_this_day, youtube, websites
 from user_phrases import user_said
 
 r = sr.Recognizer()
+eithne_bot = ChatBot('Eithne')
+trainer = ChatterBotCorpusTrainer(eithne_bot)
+trainer.train("chatterbot.corpus.english.conversations")
 
 
 def eithne_talk(audio_string):
@@ -48,7 +54,7 @@ def user_audio(ask=''):
         except sr.UnknownValueError:
             print('No voice input heard')
         except sr.RequestError:
-            eithne_talk('Sorry, my respond service is down')
+            eithne_talk('Sorry, my response service is down')
             exit()
         print('$', user_input.lower())
         return user_input.lower()
@@ -90,10 +96,22 @@ def respond(user_input):
         surf = user_audio('Which website would you like to surf?')
         websites(surf)
         eithne_talk(surf + ' opened')
+    if 'chat' == user_said(user_input):
+        conversation(user_input)
     # Allow user to stop Eithne.
     if 'stop' == user_said(user_input):
         eithne_talk('farewell')
         exit()
+
+
+def conversation(chat):
+    print('having a chat...')
+    time.sleep(1)
+    while 1:
+        response = eithne_bot.get_response(chat)
+        user_audio(str(response))
+        if 'stop talking' in chat:
+            break
 
 
 # Greet the user.
