@@ -16,7 +16,7 @@ import speech_recognition as sr
 import wikipedia
 from gtts import gTTS
 
-from features import google, maps, on_this_day, youtube, email
+from features import google, maps, on_this_day, youtube, websites
 from user_phrases import user_said
 
 r = sr.Recognizer()
@@ -46,8 +46,7 @@ def user_audio(ask=''):
         try:
             user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
-            eithne_talk('Did you say something?')
-            eithne_talk('I was not able to pick it up!')
+            print('No voice input heard')
         except sr.RequestError:
             eithne_talk('Sorry, my respond service is down')
             exit()
@@ -63,9 +62,6 @@ def respond(user_input):
     # Allow user to thank Eithne.
     if 'thank' == user_said(user_input):
         eithne_talk('No bother')
-    # Tell user the time.
-    if 'time' == user_said(user_input):
-        eithne_talk('The time is ' + dt.datetime.now().strftime("%H:%M"))
     # Let user do a google search.
     if 'search' == user_said(user_input):
         search = user_audio('What would you like to search for?')
@@ -89,10 +85,10 @@ def respond(user_input):
         search = user_audio('What video would you like to watch?')
         youtube(search)
         eithne_talk('Here is what I found for ' + search + ' on youtube')
-    if 'email' == user_said(user_input):
-        e = user_audio('What email would you like to check?')
-        email(e)
-        eithne_talk("You've got mail at " + e)
+    if 'web' == user_said(user_input):
+        surf = user_audio('Which website would you like to surf?')
+        websites(surf)
+        eithne_talk(surf + ' opened')
     # Allow user to stop Eithne.
     if 'stop' == user_said(user_input):
         eithne_talk('farewell')

@@ -1,8 +1,5 @@
 def user_said(phrase):
     p = phrase
-    # User asks the time.
-    if 'what time is it' in p or 'what is the time' or 'time' in p or 'clock' in p:
-        phrase = 'time'
     # User wants Eithne to stop listening.
     if 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         phrase = 'stop'
@@ -29,4 +26,6 @@ def user_said(phrase):
         phrase = 'youtube'
     if 'email' in p or 'mail' in p:
         phrase = 'email'
+    if 'website' in p or 'surf the web' in p:
+        phrase = 'web'
     return phrase

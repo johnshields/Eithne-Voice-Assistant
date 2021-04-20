@@ -27,6 +27,8 @@ def youtube(video):
     wb.get().open(url)
 
 
-def email(email_site):
-    url = f'https://www.{email_site}.com'
+def websites(website):
+    url = f'https://www.{website}.com'
     wb.get().open(url)
+
+
