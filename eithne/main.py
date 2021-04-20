@@ -85,6 +85,7 @@ def respond(user_input):
         search = user_audio('What video would you like to watch?')
         youtube(search)
         eithne_talk('Here is what I found for ' + search + ' on youtube')
+    # Allow user to surf the web.
     if 'web' == user_said(user_input):
         surf = user_audio('Which website would you like to surf?')
         websites(surf)

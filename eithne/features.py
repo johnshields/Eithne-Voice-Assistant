@@ -5,7 +5,7 @@ import requests as req
 
 
 def google(search):
-    url = 'https://google.com/search?q=' + search
+    url = f'https://google.com/search?q={search}'
     wb.get().open(url)
 
 
@@ -23,7 +23,7 @@ def on_this_day():
 
 
 def youtube(video):
-    url = f"https://www.youtube.com/results?search_query={video}"
+    url = f'https://www.youtube.com/results?search_query={video}'
     wb.get().open(url)
 
 
