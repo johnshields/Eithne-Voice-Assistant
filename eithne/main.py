@@ -1,7 +1,7 @@
 """
 John Shields - G00348436
 Main Controller of Eithne.
-
+# TODO - Bring in chatter bot again to user for responses.
 References:
 https://youtu.be/x8xjj6cR9Nc
 https://bit.ly/3auyANP
@@ -42,8 +42,10 @@ def eithne_talk(audio_string):
 def user_audio(ask=''):
     # Create a microphone instance.
     with sr.Microphone() as source:
+        # If the command requires 2 inputs from the user.
         if ask:
             eithne_talk(ask)
+
         # Listen for user input.
         audio = r.listen(source)
         r.adjust_for_ambient_noise(source, duration=5.0)
@@ -81,11 +83,12 @@ def respond(user_input):
         name = user_audio('My name is Eithne. What is yours?')
         eithne_talk('Hi ' + name)
     """
-    talk about yourself
+    Allow user to find out more about Eithne.
     """
-    if 'yourself' in user_said(user_input):
+    if 'about' in user_said(user_input):
         eithne_talk("I am a voice assistant named Eithne. I am programmed to do features such as google search, "
-                    "youtube queries, google maps, wikipedia, open any website with a dot com, and a history of today.")
+                    "youtube queries, google maps, wikipedia, open any website with a dot com, "
+                    "and I can tell you a history of today.")
     """
     Allow user to thank Eithne.
     """
@@ -115,7 +118,7 @@ def respond(user_input):
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
     """
-    Tell the User what happened on this day.
+    Tell the User what happened on this day in history.
     """
     if 'history' == user_said(user_input):
         eithne_talk('Today ' + on_this_day())
@@ -125,7 +128,7 @@ def respond(user_input):
     if 'youtube' in user_said(user_input):
         search = user_audio('What video would you like to watch?')
         youtube(search)
-        eithne_talk('Here is what I found for ' + search + ' on youtube')
+        eithne_talk('Here are videos for ' + search + ' on youtube')
     """
     Allow user to surf the web.
     """

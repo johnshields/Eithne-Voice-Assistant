@@ -9,7 +9,7 @@ def user_said(phrase):
     p = phrase
     # User wants to know what Eithne can do.
     if 'tell me about yourself' in p or 'talk about yourself' in p or 'what can you do' in p or 'about' in p:
-        p = 'yourself'
+        p = 'about'
     # User wants Eithne to stop listening.
     if 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
