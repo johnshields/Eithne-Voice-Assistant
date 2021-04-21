@@ -13,6 +13,14 @@ from datetime import datetime
 import requests as req
 
 
+def about():
+    about_eithne = "I am a voice assistant named Eithne. " \
+                   "I am programmed to do the following features: " \
+                   "Google Search, Google Maps, YouTube Queries, Wikipedia Summaries, " \
+                   "open any Website with a dot com and I can tell you Historical Events that happened Today."
+    return about_eithne
+
+
 # Function to take in user input and do a google search.
 def google(search):
     url = f'https://google.com/search?q={search}'
