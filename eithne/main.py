@@ -119,7 +119,7 @@ def user_audio(ask=''):
             # If nothing was said or speech was 'unintelligible'.
             print('No voice input recognized')
         except sr.RequestError:
-            # API was unreachable or unresponsive.
+            # Speech Recognition is unreachable or unresponsive.
             eithne_talk('Sorry, it appears that the speech recognition service is down.')
             exit()
         print('$', user_input.lower())
@@ -193,8 +193,8 @@ def greeting():
 def eithne():
     print('====== Eithne, Voice Assistant ======')
     greeting()
-    help_ful = ['How can I help?', 'What would you like to do today?',
-                'What service do you require?', "I'm listening"]
+    help_ful = ['How can I help?', 'What would you like to do today?', 'What service do you require?',
+                "I'm listening", "What can I do for you?", "Thanks for waking me up!"]
     message = help_ful[random.randint(0, len(help_ful) - 1)]
     eithne_talk(message)
     time.sleep(1)
