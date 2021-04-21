@@ -1,12 +1,15 @@
 """
 John Shields - G00348436
 User Phrases Controller
-To allow users to have an option of what to say.
+To allow users to have an option of what to say for different commands.
 """
 
 
 def user_said(phrase):
     p = phrase
+    #
+    if 'tell me about yourself' in p:
+        p = 'talk about yourself'
     # User wants Eithne to stop listening.
     if 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
