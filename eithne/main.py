@@ -81,6 +81,12 @@ def respond(user_input):
         name = user_audio('My name is Eithne. What is yours?')
         eithne_talk('Hi ' + name)
     """
+    talk about yourself
+    """
+    if 'yourself' in user_said(user_input):
+        eithne_talk("I am a voice assistant named Eithne. I am programmed to do features such as google search, "
+                    "youtube queries, google maps, wikipedia, open any website with a dot com, and a history of today.")
+    """
     Allow user to thank Eithne.
     """
     if 'thank' in user_said(user_input):
@@ -102,7 +108,7 @@ def respond(user_input):
         maps(location)
         eithne_talk('Here is the location of ' + location)
     """
-    Allow user to use wiki.
+    Allow user to use wikipedia.
     """
     if 'wikipedia' in user_said(user_input):
         wiki = user_audio('What would you like to know more about?')
