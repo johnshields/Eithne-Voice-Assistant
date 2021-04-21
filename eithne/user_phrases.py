@@ -11,10 +11,10 @@ def user_said(phrase):
     if 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
     # User wants do a google search.
-    if 'search' in p or 'do a search' in p or 'google' in p or 'google search' in p:
+    if 'search' in p or 'do a search' in p or 'google' in p or 'google search' in p or 'open google' in p:
         p = 'search'
     # User wants to find a location.
-    if 'location' in p or 'maps' in p or 'find location' in p or 'where can i find' in p:
+    if 'location' in p or 'maps' in p or 'find location' in p or 'where can i find' in p or 'open maps' in p:
         p = 'location'
     # User wants to thank Eithne.
     if 'thank you' in p or 'thanks' in p or 'sound' in p or 'cheers' in p:
@@ -29,7 +29,7 @@ def user_said(phrase):
     if 'history' in p or 'what happened today' in p or 'history of today' in p or 'happened today' in p or 'today' in p:
         p = 'history'
     # User wants to search youtube.
-    if 'youtube' in p or 'video' in p or 'search youtube' in p:
+    if 'youtube' in p or 'video' in p or 'i would like to watch a video' in p or 'open youtube' in p:
         p = 'youtube'
     # User wants to surf a website.
     if 'website' in p or 'surf the web' in p or 'internet' in p or 'online' in p:

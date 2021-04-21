@@ -4,8 +4,8 @@ Main Controller of Eithne.
 
 References:
 https://youtu.be/x8xjj6cR9Nc
-https://towardsdatascience.com/how-to-build-your-own-ai-personal-assistant-using-python-f57247b4494b
-https://chatterbot.readthedocs.io/en/stable/
+https://bit.ly/3auyANP
+https://realpython.com/python-speech-recognition/
 """
 import datetime as dt
 import logging
@@ -27,6 +27,7 @@ r = sr.Recognizer()
 # Debugging
 logging.basicConfig(level=logging.INFO)
 
+
 # Function to use google text to speech for Eithne's voice.
 def eithne_talk(audio_string):
     # Set up Eithne's vocals.
@@ -43,18 +44,33 @@ def eithne_talk(audio_string):
 
 # Set up the microphone for the user.
 def user_audio(ask=''):
+    response = {
+        "success": True,
+        "error": None,
+        "transcription": None
+    }
     # Create a microphone instance.
     with sr.Microphone() as source:
         if ask:
             eithne_talk(ask)
         # Listen for input.
         audio = r.listen(source)
+        r.adjust_for_ambient_noise(source, duration=5.0)
         user_input = ''
+
+        if not isinstance(r, sr.Recognizer):
+            raise TypeError('`recognizer` must be `Recognizer` instance')
+
+        if not isinstance(source, sr.Microphone):
+            raise TypeError('`microphone` must be a `Microphone` instance')
+
         try:
             user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
+            # speech was unintelligible
             print('No voice input heard')
         except sr.RequestError:
+            # API was unreachable or unresponsive
             eithne_talk('Sorry, my response service is down')
             exit()
         print('$', user_input.lower())
@@ -69,7 +85,9 @@ def respond(user_input):
         eithne_talk('Hi ' + name)
     # Allow user to thank Eithne.
     if 'thank' in user_said(user_input):
-        eithne_talk('No bother')
+        good_bye = ['No bother', 'No problem', "You're welcome", "Don't mention it"]
+        message = good_bye[random.randint(0, len(good_bye) - 1)]
+        eithne_talk(message)
     # Let user do a google search.
     if 'search' in user_said(user_input):
         search = user_audio('What would you like to search for?')
@@ -100,7 +118,9 @@ def respond(user_input):
         eithne_talk(surf + ' opened')
     # Allow user to stop Eithne.
     if 'stop' in user_said(user_input):
-        eithne_talk('farewell')
+        good_bye = ['Farewell', 'Goodbye', 'Good luck', 'See ya', 'So long']
+        message = good_bye[random.randint(0, len(good_bye) - 1)]
+        eithne_talk(message)
         exit()
 
 
@@ -119,7 +139,8 @@ def greeting():
 def eithne():
     print('====== Eithne, Voice Assistant ======')
     greeting()
-    help_ful = ['How can I help?', 'What would you like to do today?', 'What service do you require?']
+    help_ful = ['How can I help?', 'What would you like to do today?',
+                'What service do you require?', "I'm listening"]
     message = help_ful[random.randint(0, len(help_ful) - 1)]
     eithne_talk(message)
     time.sleep(1)
