@@ -8,9 +8,12 @@ https://bit.ly/3auyANP
 https://realpython.com/python-speech-recognition/
 """
 import datetime as dt
+import logging
 import os
 import random
 import time
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
 import playsound
 import speech_recognition as sr
@@ -22,6 +25,28 @@ from user_phrases import user_said
 
 # Load in recognizer.
 r = sr.Recognizer()
+
+logging.basicConfig(level=logging.INFO)
+
+# Set up Eithne as a chat bot.
+eithne_bot = ChatBot(
+    'Eithne Bot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch'
+    ],
+    database_uri='sqlite:///database.db'
+)
+
+# Train the bot.
+trainer = ListTrainer(eithne_bot)
+trainer.train([
+    "hi there",
+    "Hello",
+])
+
+response = eithne_bot.get_response("hi")
+print(response)
 
 
 # Function to use google text to speech for Eithne's voice.
