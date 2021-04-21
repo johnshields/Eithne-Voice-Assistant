@@ -136,41 +136,41 @@ def respond(user_input):
         name = user_audio('My name is Eithne. What is yours?')
         eithne_talk('Hi ' + name)
     # Allow user to find out more about Eithne.
-    if 'about' in user_said(user_input):
+    elif 'about' in user_said(user_input):
         eithne_talk(about())
     # Allow user to thank Eithne.
-    if 'thank' in user_said(user_input):
+    elif 'thank' in user_said(user_input):
         eithne_talk(bot_response(user_input))
     # Let user do a google search.
-    if 'search' in user_said(user_input):
+    elif 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))
         google(search)
         eithne_talk('Here is what I found for ' + search + ' on google')
     # Let user find a location.
-    if 'location' in user_said(user_input):
+    elif 'location' in user_said(user_input):
         location = user_audio(bot_response(user_input))
         maps(location)
         eithne_talk('Here is the location of ' + location)
     # Allow user to use wikipedia.
-    if 'wikipedia' in user_said(user_input):
+    elif 'wikipedia' in user_said(user_input):
         wiki = user_audio(bot_response(user_input))
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
     # Tell the User what happened on this day in history.
-    if 'history' == user_said(user_input):
+    elif 'history' == user_said(user_input):
         eithne_talk('Today ' + on_this_day())
     # Allow user to find a video on YouTube.
-    if 'youtube' in user_said(user_input):
+    elif 'youtube' in user_said(user_input):
         query = user_audio(bot_response(user_input))
         youtube(query)
         eithne_talk('Here are videos for ' + query + ' on youtube')
     # Allow user to surf the web.
-    if 'web' in user_said(user_input):
+    elif 'web' in user_said(user_input):
         surf = user_audio(bot_response(user_input))
         websites(surf)
         eithne_talk(surf + ' opened')
     # Allow user to stop Eithne.
-    if 'stop' in user_said(user_input):
+    elif 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))
         exit()
 

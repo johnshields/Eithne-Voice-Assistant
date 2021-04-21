@@ -13,6 +13,7 @@ from datetime import datetime
 import requests as req
 
 
+# Function to return a description of Eithne.
 def about():
     about_eithne = "I am a voice assistant named Eithne. " \
                    "I am programmed to do the following features: " \
