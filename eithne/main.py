@@ -41,8 +41,8 @@ eithne_bot = ChatBot(
 # Train the bot.
 trainer = ListTrainer(eithne_bot)
 trainer.train([
-    "hi there",
-    "Hello",
+    "hi there", "hey"
+    "Hello", "well"
 ])
 
 response = eithne_bot.get_response("hi")
@@ -165,7 +165,7 @@ def respond(user_input):
     Allow user to stop Eithne.
     """
     if 'stop' in user_said(user_input):
-        good_bye = ['Farewell', 'Goodbye', 'Good luck', 'See ya', 'So long']
+        good_bye = ['Farewell', 'Goodbye', 'Good luck', 'So long']
         message = good_bye[random.randint(0, len(good_bye) - 1)]
         eithne_talk(message)
         exit()
