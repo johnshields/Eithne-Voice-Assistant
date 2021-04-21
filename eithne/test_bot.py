@@ -1,8 +1,7 @@
 """
-John Shields - G00348436
+@author John Shields - G00348436
 Testing Bot from ChatterBot
 Mainly to acquire accurate responses.
-
 https://chatterbot.readthedocs.io/en/stable/training.html
 """
 from chatterbot import ChatBot

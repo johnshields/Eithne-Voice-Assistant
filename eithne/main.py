@@ -1,5 +1,5 @@
 """
-John Shields - G00348436
+@author John Shields - G00348436
 Main Controller of Eithne.
 
 References:
@@ -121,10 +121,10 @@ def user_audio(ask=''):
             user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
             # If nothing was said or speech was 'unintelligible'.
-            print('No voice input heard')
+            print('No voice input recognized')
         except sr.RequestError:
             # API was unreachable or unresponsive.
-            eithne_talk('Sorry, my response service is down')
+            eithne_talk('Sorry, it appears that the speech recognition service is down.')
             exit()
         print('$', user_input.lower())
         return user_input.lower()  # Return the user's input.
@@ -135,67 +135,47 @@ def user_audio(ask=''):
 # Works with user_said from user_phrases.py, features.py and user_audio
 # Eithne responds to the user based on their request.
 def respond(user_input):
-    """
-    Allow user to ask for VA's name then say 'Hi' with the user's said name.
-    """
+    # Allow user to ask for VA's name then say 'Hi' with the user's said name.
     if 'name' in user_said(user_input):
         name = user_audio('My name is Eithne. What is yours?')
         eithne_talk('Hi ' + name)
-    """
-    Allow user to find out more about Eithne.
-    """
+    # Allow user to find out more about Eithne.
     if 'about' in user_said(user_input):
         eithne_talk("I am a voice assistant named Eithne. I am programmed to do features such as google search, "
                     "youtube queries, google maps, wikipedia, open any website with a dot com, "
                     "and I can tell you a history of today.")
-    """
-    Allow user to thank Eithne.
-    """
+    # Allow user to thank Eithne.
     if 'thank' in user_said(user_input):
         eithne_talk(bot_response(user_input))
-    """
-    Let user do a google search.
-    """
+    # Let user do a google search.
     if 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))
         google(search)
         eithne_talk('Here is what I found for ' + search + ' on google')
-    """
-    Let user find a location.
-    """
+    # Let user find a location.
     if 'location' in user_said(user_input):
         location = user_audio(bot_response(user_input))
         maps(location)
         eithne_talk('Here is the location of ' + location)
-    """
-    Allow user to use wikipedia.
-    """
+    # Allow user to use wikipedia.
     if 'wikipedia' in user_said(user_input):
         wiki = user_audio(bot_response(user_input))
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
-    """
-    Tell the User what happened on this day in history.
-    """
+    # Tell the User what happened on this day in history.
     if 'history' == user_said(user_input):
         eithne_talk('Today ' + on_this_day())
-    """
-    Allow user to find a video on YouTube.
-    """
+    # Allow user to find a video on YouTube.
     if 'youtube' in user_said(user_input):
         search = user_audio(bot_response(user_input))
         youtube(search)
         eithne_talk('Here are videos for ' + search + ' on youtube')
-    """
-    Allow user to surf the web.
-    """
+    # Allow user to surf the web.
     if 'web' in user_said(user_input):
         surf = user_audio(bot_response(user_input))
         websites(surf)
         eithne_talk(surf + ' opened')
-    """
-    Allow user to stop Eithne.
-    """
+    # Allow user to stop Eithne.
     if 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))
         exit()

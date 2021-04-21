@@ -1,5 +1,5 @@
 """
-John Shields - G00348436
+@author John Shields - G00348436
 User Phrases Controller
 To allow users to have an option of what to say for different commands.
 """
