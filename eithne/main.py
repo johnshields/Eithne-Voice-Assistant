@@ -137,9 +137,9 @@ def respond(user_input):
         eithne_talk('Hi ' + name)
     # Allow user to find out more about Eithne.
     if 'about' in user_said(user_input):
-        eithne_talk("I am a voice assistant named Eithne. I am programmed to do the features: google search, "
-                    "youtube queries, google maps, wikipedia summaries, open any website with a dot com, "
-                    "and I can tell you a history of today.")
+        eithne_talk("I am a voice assistant named Eithne. I am programmed to do the following features: "
+                    "Google Search, Google Maps, YouTube Queries, Wikipedia Summaries, open any Website with a dot com "
+                    "and I can tell you Historical Events that happened Today.")
     # Allow user to thank Eithne.
     if 'thank' in user_said(user_input):
         eithne_talk(bot_response(user_input))

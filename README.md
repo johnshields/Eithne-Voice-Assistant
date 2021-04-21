@@ -32,7 +32,7 @@ Eithne is voice assistant who is programmed to do the following features:
 * Wikipedia Summaries
 * YouTube Queries
 * Open any Website with a ``dot com``
-* A History of Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
+* Historical Events that happened Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
 
 ***
 # How to run
@@ -56,7 +56,7 @@ $ python main.py
 ```
 
 #### Eithne will then be running and waiting for a voice input...
-```bash
+```
 ====== Eithne, Voice Assistant ======
 Eithne said: Good Evening
 Eithne said: How can I help?

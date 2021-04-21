@@ -25,7 +25,7 @@ def maps(location):
     wb.get().open(url)
 
 
-# Function to get a 'history of today'.
+# Function to get Historical Events that happened Today.
 def on_this_day():
     d = datetime.today().strftime('%d')
     m = datetime.today().strftime('%m')
