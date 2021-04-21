@@ -16,11 +16,9 @@ import time
 import playsound
 import speech_recognition as sr
 import wikipedia
-from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
 from gtts import gTTS
 
-from features import google, maps, on_this_day, youtube, websites
+from features import train_bot, google, maps, on_this_day, youtube, websites, conversation
 from user_phrases import user_said
 
 # Load in recognizer.
@@ -28,20 +26,6 @@ r = sr.Recognizer()
 
 # Debugging
 logging.basicConfig(level=logging.INFO)
-
-# Set up Eithne as a chat bot.
-eithne_bot = ChatBot(
-    'Eithne Bot',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    logic_adapters=[
-        'chatterbot.logic.BestMatch'
-    ],
-    database_uri='sqlite:///database.db'
-)
-
-# Train the bot.
-trainer = ChatterBotCorpusTrainer(eithne_bot)
-trainer.train("chatterbot.corpus.english.conversations")
 
 
 # Function to use google text to speech for Eithne's voice.
@@ -71,27 +55,12 @@ def user_audio(ask=''):
             user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
             print('No voice input heard')
+            return
         except sr.RequestError:
             eithne_talk('Sorry, my response service is down')
             exit()
         print('$', user_input.lower())
         return user_input.lower()
-
-
-# Have a chat with Eithne.
-def conversation():
-    sure = ['Sure!', 'What would you like to talk about?', 'Shoot!']
-    message = sure[random.randint(0, len(sure) - 1)]
-    eithne_talk(message)
-    print('having a chat...')
-    time.sleep(1)
-    while 1:
-        try:
-            message = user_audio()
-            response = eithne_bot.get_response(message)
-            eithne_talk(str(response))
-        except (KeyboardInterrupt, EOFError, SystemExit):
-            break
 
 
 # Eithne responds to the user bases on their request.
@@ -127,13 +96,17 @@ def respond(user_input):
         youtube(search)
         eithne_talk('Here is what I found for ' + search + ' on youtube')
     # Allow user to surf the web.
-    if 'web' == user_said(user_input):
+    if 'web' in user_said(user_input):
         surf = user_audio('Which website would you like to surf?')
         websites(surf)
         eithne_talk(surf + ' opened')
     # Allow user to have a chat with Eithne.
-    if 'chat' == user_said(user_input):
-        conversation()
+    if 'have a chat' in user_said(user_input):
+        sure = ['Sure!', 'What would you like to talk about?', 'Shoot!']
+        message = sure[random.randint(0, len(sure) - 1)]
+        eithne_talk(message)
+        topic = user_audio()
+        conversation(topic)
     # Allow user to stop Eithne.
     if 'stop' == user_said(user_input):
         eithne_talk('farewell')
@@ -165,4 +138,5 @@ def eithne():
 
 
 if __name__ == "__main__":
+    train_bot()
     eithne()
