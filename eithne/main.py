@@ -29,24 +29,50 @@ r = sr.Recognizer()
 logging.basicConfig(level=logging.INFO)
 
 # Set up Eithne as a chat bot.
-eithne_bot = ChatBot(
-    'Eithne Bot',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    logic_adapters=[
-        'chatterbot.logic.BestMatch'
-    ],
-    database_uri='sqlite:///database.db'
-)
+eithne_bot = ChatBot('Eithne Bot',
+                     storage_adapter='chatterbot.storage.SQLStorageAdapter',
+                     logic_adapters=['chatterbot.logic.BestMatch'],
+                     database_uri='sqlite:///database.db'
+                     )
 
 # Train the bot.
 trainer = ListTrainer(eithne_bot)
-trainer.train([
-    "hi there", "hey"
-    "Hello", "well"
-])
-
-response = eithne_bot.get_response("hi")
-print(response)
+# 1: = User cmd  # 2: = response
+# Response to a google search cmd.
+trainer.train(["search", "What would you like to search for?"])
+trainer.train(["do a search", "Google is loaded for searching"])
+trainer.train(["google", "Google is waiting for your request"])
+trainer.train(["google search", "search away"])
+trainer.train(["open google", "Google is at your service"])
+# Response to a location cmd.
+trainer.train(["location", "What is the location?"])
+trainer.train(["maps", "What place?"])
+trainer.train(["find location", "where is your next adventure?"])
+trainer.train(["where can i find", "Find what?"])
+trainer.train(["open maps", "maps is at your service"])
+# Response to a wikipedia cmd.
+trainer.train(["wikipedia", "What would you like to know more about?"])
+trainer.train(["wiki", "Hmm, what topic?"])
+# Response to a youtube cmd.
+trainer.train(["youtube", "YouTube is waiting for a query"])
+trainer.train(["video", "What video?"])
+trainer.train(["i would like to watch a video", "Which one?"])
+trainer.train(["open youtube", "Youtube is at your service"])
+# Responses for website request.
+trainer.train(["website", "which website?"])
+trainer.train(["surf the web", "Which website would you like to surf?"])
+trainer.train(["internet", "What would you like to see?"])
+trainer.train(["online", "Online. Waiting on your command"])
+# Responses for thanking Eithne.
+trainer.train(["thank you", "You're welcome"])
+trainer.train(["thanks", "Don't mention it"])
+trainer.train(["sound", "No bother"])
+trainer.train(["cheers", "No problem"])
+# Responses for when Eithne is requested to turn off.
+trainer.train(["turn off", "Farewell"])
+trainer.train(["stop listening", "Goodbye"])
+trainer.train(["exit", "Good Luck"])
+trainer.train(["quit", "So long"])
 
 
 # Function to use google text to speech for Eithne's voice.
@@ -118,28 +144,30 @@ def respond(user_input):
     Allow user to thank Eithne.
     """
     if 'thank' in user_said(user_input):
-        good_bye = ['No bother', 'No problem', "You're welcome", "Don't mention it"]
-        message = good_bye[random.randint(0, len(good_bye) - 1)]
-        eithne_talk(message)
+        response = eithne_bot.get_response(user_input)
+        eithne_talk(str(response))
     """
     Let user do a google search.
     """
     if 'search' in user_said(user_input):
-        search = user_audio('What would you like to search for?')
+        response = eithne_bot.get_response(user_input)
+        search = user_audio(str(response))
         google(search)
         eithne_talk('Here is what I found for ' + search + ' on google')
     """
     Let user find a location.
     """
     if 'location' in user_said(user_input):
-        location = user_audio('What is the location?')
+        response = eithne_bot.get_response(user_input)
+        location = user_audio(str(response))
         maps(location)
         eithne_talk('Here is the location of ' + location)
     """
     Allow user to use wikipedia.
     """
     if 'wikipedia' in user_said(user_input):
-        wiki = user_audio('What would you like to know more about?')
+        response = eithne_bot.get_response(user_input)
+        wiki = user_audio(str(response))
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
     """
@@ -151,23 +179,24 @@ def respond(user_input):
     Allow user to find a video on YouTube.
     """
     if 'youtube' in user_said(user_input):
-        search = user_audio('What video would you like to watch?')
+        response = eithne_bot.get_response(user_input)
+        search = user_audio(str(response))
         youtube(search)
         eithne_talk('Here are videos for ' + search + ' on youtube')
     """
     Allow user to surf the web.
     """
     if 'web' in user_said(user_input):
-        surf = user_audio('Which website would you like to surf?')
+        response = eithne_bot.get_response(user_input)
+        surf = user_audio(str(response))
         websites(surf)
         eithne_talk(surf + ' opened')
     """
     Allow user to stop Eithne.
     """
     if 'stop' in user_said(user_input):
-        good_bye = ['Farewell', 'Goodbye', 'Good luck', 'So long']
-        message = good_bye[random.randint(0, len(good_bye) - 1)]
-        eithne_talk(message)
+        response = eithne_bot.get_response(user_input)
+        eithne_talk(str(response))
         exit()
 
 
