@@ -2,8 +2,11 @@
 @author John Shields - G00348436
 Testing Bot from ChatterBot
 Mainly to acquire accurate responses.
-https://chatterbot.readthedocs.io/en/stable/training.html
+
+Reference: https://chatterbot.readthedocs.io/en/stable/training.html
 """
+import logging
+
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
@@ -49,6 +52,9 @@ trainer.train(["turn off", "Farewell"])
 trainer.train(["stop listening", "Goodbye"])
 trainer.train(["exit", "Good Luck"])
 trainer.train(["quit", "So long"])
+
+# Debugging - See how the bot learns...
+logging.basicConfig(level=logging.INFO)
 
 # Loop to test responses with CLI interaction.
 print('talk to bot')

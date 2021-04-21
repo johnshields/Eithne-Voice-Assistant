@@ -3,7 +3,9 @@
 Features Controller
 Eithne's features for google, maps, history, youtube and websites.
 
-Reference: https://bit.ly/3auyANP
+References:
+https://youtu.be/x8xjj6cR9Nc
+https://bit.ly/3auyANP
 """
 import webbrowser as wb
 from datetime import datetime

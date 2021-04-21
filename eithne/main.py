@@ -9,7 +9,6 @@ https://realpython.com/python-speech-recognition/
 https://chatterbot.readthedocs.io/en/stable/training.html
 """
 import datetime as dt
-import logging
 import os
 import random
 import time
@@ -27,9 +26,6 @@ from user_phrases import user_said
 # Load in recognizer.
 r = sr.Recognizer()
 
-# Debugging - See how the bot learns...
-logging.basicConfig(level=logging.INFO)
-
 # Set up Eithne as a chat bot.
 eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
                      logic_adapters=['chatterbot.logic.BestMatch'], database_uri=None)
@@ -40,6 +36,11 @@ trainer = ListTrainer(eithne_bot)
 Training the chat bot with different commands a user could say with responses for Eithne to say.
 #1:= User Command #2:= Bot Response
 """
+# Responses for thanking Eithne.
+trainer.train(["thank you", "You're welcome"])
+trainer.train(["thanks", "Don't mention it"])
+trainer.train(["sound", "No bother"])
+trainer.train(["cheers", "No problem"])
 # Response to a google search cmd.
 trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching"])
@@ -65,11 +66,6 @@ trainer.train(["website", "which website?"])
 trainer.train(["surf the web", "Which website would you like to surf?"])
 trainer.train(["internet", "What would you like to see?"])
 trainer.train(["online", "Online. Waiting on your command"])
-# Responses for thanking Eithne.
-trainer.train(["thank you", "You're welcome"])
-trainer.train(["thanks", "Don't mention it"])
-trainer.train(["sound", "No bother"])
-trainer.train(["cheers", "No problem"])
 # Responses for when Eithne is requested to turn off.
 trainer.train(["turn off", "Farewell"])
 trainer.train(["stop listening", "Goodbye"])
@@ -132,7 +128,7 @@ def user_audio(ask=''):
 
 # Main response controller
 # Allows user and Eithne to talk back and forth.
-# Works with user_said from user_phrases.py, features.py and user_audio
+# Works with user_said from user_phrases.py, features.py, bot_response and user_audio
 # Eithne responds to the user based on their request.
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
@@ -141,8 +137,8 @@ def respond(user_input):
         eithne_talk('Hi ' + name)
     # Allow user to find out more about Eithne.
     if 'about' in user_said(user_input):
-        eithne_talk("I am a voice assistant named Eithne. I am programmed to do features such as google search, "
-                    "youtube queries, google maps, wikipedia, open any website with a dot com, "
+        eithne_talk("I am a voice assistant named Eithne. I am programmed to do the features: google search, "
+                    "youtube queries, google maps, wikipedia summaries, open any website with a dot com, "
                     "and I can tell you a history of today.")
     # Allow user to thank Eithne.
     if 'thank' in user_said(user_input):
