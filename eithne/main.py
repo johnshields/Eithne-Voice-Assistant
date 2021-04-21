@@ -45,13 +45,13 @@ trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching"])
 trainer.train(["google", "Google is waiting for your request"])
 trainer.train(["google search", "search away"])
-trainer.train(["open google", "Google is waiting your service"])
+trainer.train(["open google", "Google is waiting your command"])
 # Response to a location cmd.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
 trainer.train(["find location", "where is your next adventure?"])
 trainer.train(["where can i find", "Find what?"])
-trainer.train(["open maps", "maps is at your service"])
+trainer.train(["open maps", "maps is at your command"])
 # Response to a wikipedia cmd.
 trainer.train(["wikipedia", "What would you like to know more about?"])
 trainer.train(["wiki", "Hmm, what topic?"])
@@ -59,7 +59,7 @@ trainer.train(["wiki", "Hmm, what topic?"])
 trainer.train(["youtube", "YouTube is waiting for a query"])
 trainer.train(["video", "What video?"])
 trainer.train(["i would like to watch a video", "Which one?"])
-trainer.train(["open youtube", "Youtube is at your service"])
+trainer.train(["open youtube", "Youtube is at your command"])
 # Responses for website request.
 trainer.train(["website", "which website?"])
 trainer.train(["surf the web", "Which website would you like to surf?"])
@@ -75,6 +75,12 @@ trainer.train(["turn off", "Farewell"])
 trainer.train(["stop listening", "Goodbye"])
 trainer.train(["exit", "Good Luck"])
 trainer.train(["quit", "So long"])
+
+
+# Function to take in a user command and return a response from the bot.
+def bot_response(cmd):
+    response = eithne_bot.get_response(cmd)
+    return str(response)
 
 
 # Function to use google text to speech for Eithne's voice.
@@ -146,30 +152,26 @@ def respond(user_input):
     Allow user to thank Eithne.
     """
     if 'thank' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        eithne_talk(str(response))
+        eithne_talk(bot_response(user_input))
     """
     Let user do a google search.
     """
     if 'search' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        search = user_audio(str(response))
+        search = user_audio(bot_response(user_input))
         google(search)
         eithne_talk('Here is what I found for ' + search + ' on google')
     """
     Let user find a location.
     """
     if 'location' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        location = user_audio(str(response))
+        location = user_audio(bot_response(user_input))
         maps(location)
         eithne_talk('Here is the location of ' + location)
     """
     Allow user to use wikipedia.
     """
     if 'wikipedia' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        wiki = user_audio(str(response))
+        wiki = user_audio(bot_response(user_input))
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
     """
@@ -181,24 +183,21 @@ def respond(user_input):
     Allow user to find a video on YouTube.
     """
     if 'youtube' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        search = user_audio(str(response))
+        search = user_audio(bot_response(user_input))
         youtube(search)
         eithne_talk('Here are videos for ' + search + ' on youtube')
     """
     Allow user to surf the web.
     """
     if 'web' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        surf = user_audio(str(response))
+        surf = user_audio(bot_response(user_input))
         websites(surf)
         eithne_talk(surf + ' opened')
     """
     Allow user to stop Eithne.
     """
     if 'stop' in user_said(user_input):
-        response = eithne_bot.get_response(user_input)
-        eithne_talk(str(response))
+        eithne_talk(bot_response(user_input))
         exit()
 
 
