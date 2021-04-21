@@ -18,7 +18,7 @@ import speech_recognition as sr
 import wikipedia
 from gtts import gTTS
 
-from features import train_bot, google, maps, on_this_day, youtube, websites, conversation
+from features import google, maps, on_this_day, youtube, websites
 from user_phrases import user_said
 
 # Load in recognizer.
@@ -26,7 +26,6 @@ r = sr.Recognizer()
 
 # Debugging
 logging.basicConfig(level=logging.INFO)
-
 
 # Function to use google text to speech for Eithne's voice.
 def eithne_talk(audio_string):
@@ -55,7 +54,6 @@ def user_audio(ask=''):
             user_input = r.recognize_google(audio, language='en')
         except sr.UnknownValueError:
             print('No voice input heard')
-            return
         except sr.RequestError:
             eithne_talk('Sorry, my response service is down')
             exit()
@@ -66,24 +64,24 @@ def user_audio(ask=''):
 # Eithne responds to the user bases on their request.
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
-    if 'name' == user_said(user_input):
+    if 'name' in user_said(user_input):
         name = user_audio('My name is Eithne. What is yours?')
         eithne_talk('Hi ' + name)
     # Allow user to thank Eithne.
-    if 'thank' == user_said(user_input):
+    if 'thank' in user_said(user_input):
         eithne_talk('No bother')
     # Let user do a google search.
-    if 'search' == user_said(user_input):
+    if 'search' in user_said(user_input):
         search = user_audio('What would you like to search for?')
         google(search)
         eithne_talk('Here is what I found for ' + search + ' on google')
     # Let user find a location.
-    if 'location' == user_said(user_input):
+    if 'location' in user_said(user_input):
         location = user_audio('What is the location?')
         maps(location)
         eithne_talk('Here is the location of ' + location)
     # Allow user to use wiki.
-    if 'wikipedia' == user_said(user_input):
+    if 'wikipedia' in user_said(user_input):
         wiki = user_audio('What would you like to know more about?')
         results = wikipedia.summary(wiki, sentences=3)
         eithne_talk('According to wikipedia ' + results)
@@ -91,7 +89,7 @@ def respond(user_input):
     if 'history' == user_said(user_input):
         eithne_talk('Today ' + on_this_day())
     # Allow user to find a video on YouTube.
-    if 'youtube' == user_said(user_input):
+    if 'youtube' in user_said(user_input):
         search = user_audio('What video would you like to watch?')
         youtube(search)
         eithne_talk('Here is what I found for ' + search + ' on youtube')
@@ -100,15 +98,8 @@ def respond(user_input):
         surf = user_audio('Which website would you like to surf?')
         websites(surf)
         eithne_talk(surf + ' opened')
-    # Allow user to have a chat with Eithne.
-    if 'have a chat' in user_said(user_input):
-        sure = ['Sure!', 'What would you like to talk about?', 'Shoot!']
-        message = sure[random.randint(0, len(sure) - 1)]
-        eithne_talk(message)
-        topic = user_audio()
-        conversation(topic)
     # Allow user to stop Eithne.
-    if 'stop' == user_said(user_input):
+    if 'stop' in user_said(user_input):
         eithne_talk('farewell')
         exit()
 
@@ -138,5 +129,4 @@ def eithne():
 
 
 if __name__ == "__main__":
-    train_bot()
     eithne()

@@ -7,9 +7,6 @@ To allow users to have an option of what to say.
 
 def user_said(phrase):
     p = phrase
-    # User wants to chat with Eithne.
-    if 'chat' in p or 'can we talk' in p or 'talk to me' in p or 'can we have a talk' in p or 'can we chat':
-        p = 'have a chat'
     # User wants Eithne to stop listening.
     if 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
