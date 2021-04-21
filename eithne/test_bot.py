@@ -2,27 +2,25 @@
 John Shields - G00348436
 Testing Bot from ChatterBot
 Mainly to acquire accurate responses.
+
 https://chatterbot.readthedocs.io/en/stable/training.html
 """
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
 # Set up Eithne as a chat bot.
-eithne_test_bot = ChatBot('Eithne Test Bot',
-                          storage_adapter='chatterbot.storage.SQLStorageAdapter',
-                          logic_adapters=['chatterbot.logic.BestMatch'],
-                          database_uri='sqlite:///database.db'
-                          )
+test_bot = ChatBot('Test Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
+                   logic_adapters=['chatterbot.logic.BestMatch'], database_uri=None)
 
 # Train the bot.
-trainer = ListTrainer(eithne_test_bot)
+trainer = ListTrainer(test_bot)
 # 1: = User cmd  # 2: = response
 # Response to a google search cmd.
 trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching"])
 trainer.train(["google", "Google is waiting for your request"])
 trainer.train(["google search", "search away"])
-trainer.train(["open google", "Google is at your service"])
+trainer.train(["open google", "Google is waiting your service"])
 # Response to a location cmd.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
@@ -53,8 +51,9 @@ trainer.train(["stop listening", "Goodbye"])
 trainer.train(["exit", "Good Luck"])
 trainer.train(["quit", "So long"])
 
+# Loop to test responses with CLI interaction.
 print('talk to bot')
 while True:
     phrase = input()
-    response = eithne_test_bot.get_response(phrase)
+    response = test_bot.get_response(phrase)
     print(f'bot: {response}')

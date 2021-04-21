@@ -1,23 +1,24 @@
 """
 John Shields - G00348436
 Main Controller of Eithne.
-# TODO - Bring in chatter bot again to user for responses.
+
 References:
 https://youtu.be/x8xjj6cR9Nc
 https://bit.ly/3auyANP
 https://realpython.com/python-speech-recognition/
+https://chatterbot.readthedocs.io/en/stable/training.html
 """
 import datetime as dt
 import logging
 import os
 import random
 import time
-from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
 
 import playsound
 import speech_recognition as sr
 import wikipedia
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 from gtts import gTTS
 
 from features import google, maps, on_this_day, youtube, websites
@@ -26,24 +27,25 @@ from user_phrases import user_said
 # Load in recognizer.
 r = sr.Recognizer()
 
+# Debugging - See how the bot learns...
 logging.basicConfig(level=logging.INFO)
 
 # Set up Eithne as a chat bot.
-eithne_bot = ChatBot('Eithne Bot',
-                     storage_adapter='chatterbot.storage.SQLStorageAdapter',
-                     logic_adapters=['chatterbot.logic.BestMatch'],
-                     database_uri='sqlite:///database.db'
-                     )
+eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
+                     logic_adapters=['chatterbot.logic.BestMatch'], database_uri=None)
 
 # Train the bot.
 trainer = ListTrainer(eithne_bot)
-# 1: = User cmd  # 2: = response
+"""
+Training the chat bot with different commands a user could say with responses for Eithne to say.
+#1:= User Command #2:= Bot Response
+"""
 # Response to a google search cmd.
 trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching"])
 trainer.train(["google", "Google is waiting for your request"])
 trainer.train(["google search", "search away"])
-trainer.train(["open google", "Google is at your service"])
+trainer.train(["open google", "Google is waiting your service"])
 # Response to a location cmd.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
