@@ -36,27 +36,33 @@ trainer = ListTrainer(eithne_bot)
 Training the chat bot with different commands a user could say with responses for Eithne to say.
 #1:= User Command #2:= Bot Response
 """
+# Responses to for an introduction...
+trainer.train(["what is your name", "My name is Eithne. What is yours?!"])
+trainer.train(["who are you", "I'm Eithne. Who are you?"])
+trainer.train(["hi", "Hi my name is Eithne. What is yours?"])
+trainer.train(["hello", "Hello, I'm Eithne. You?"])
+trainer.train(["hey", "Hey yourself! Eithne here. What's your name?"])
 # Responses for thanking Eithne.
 trainer.train(["thank you", "You're welcome!"])
 trainer.train(["thanks", "Don't mention it!"])
 trainer.train(["sound", "No bother!"])
 trainer.train(["cheers", "No problem!"])
-# Response to a google search cmd.
+# Responses to a google search cmd.
 trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching!"])
 trainer.train(["google", "Google is waiting for your request!"])
 trainer.train(["google search", "Search away!"])
 trainer.train(["open google", "Google is waiting your command!"])
-# Response to a location cmd.
+# Responses to a location cmd.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
 trainer.train(["find location", "where is your next adventure?"])
 trainer.train(["where can i find", "Find what?"])
 trainer.train(["open maps", "maps is at your command!"])
-# Response to a wikipedia cmd.
+# Responses to a wikipedia cmd.
 trainer.train(["wikipedia", "What would you like to know more about?"])
 trainer.train(["wiki", "Hmm, what topic?"])
-# Response to a youtube cmd.
+# Responses to a youtube cmd.
 trainer.train(["youtube", "YouTube is waiting for a query!"])
 trainer.train(["video", "What video?"])
 trainer.train(["i would like to watch a video", "Which one?"])
@@ -105,12 +111,6 @@ def user_audio(ask=''):
         audio = r.listen(source)
         user_input = ''
 
-        # if the configurations are not set up correctly.
-        if not isinstance(r, sr.Recognizer):
-            raise TypeError('`recognizer` must be `Recognizer` instance')
-        if not isinstance(source, sr.Microphone):
-            raise TypeError('`microphone` must be a `Microphone` instance')
-
         try:
             # Try to listen for user input...
             user_input = r.recognize_google(audio, language='en')
@@ -132,7 +132,7 @@ def user_audio(ask=''):
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
     if 'name' in user_said(user_input):
-        name = user_audio('My name is Eithne. What is yours?')
+        name = user_audio(bot_response(user_input))
         eithne_talk(f'Hi {name}')
     # Allow user to find out more about Eithne.
     elif 'about' in user_said(user_input):
