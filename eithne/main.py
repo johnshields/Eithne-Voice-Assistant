@@ -37,35 +37,35 @@ Training the chat bot with different commands a user could say with responses fo
 #1:= User Command #2:= Bot Response
 """
 # Responses for thanking Eithne.
-trainer.train(["thank you", "You're welcome"])
-trainer.train(["thanks", "Don't mention it"])
-trainer.train(["sound", "No bother"])
-trainer.train(["cheers", "No problem"])
+trainer.train(["thank you", "You're welcome!"])
+trainer.train(["thanks", "Don't mention it!"])
+trainer.train(["sound", "No bother!"])
+trainer.train(["cheers", "No problem!"])
 # Response to a google search cmd.
 trainer.train(["search", "What would you like to search for?"])
-trainer.train(["do a search", "Google is loaded for searching"])
-trainer.train(["google", "Google is waiting for your request"])
-trainer.train(["google search", "search away"])
-trainer.train(["open google", "Google is waiting your command"])
+trainer.train(["do a search", "Google is loaded for searching!"])
+trainer.train(["google", "Google is waiting for your request!"])
+trainer.train(["google search", "Search away!"])
+trainer.train(["open google", "Google is waiting your command!"])
 # Response to a location cmd.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
 trainer.train(["find location", "where is your next adventure?"])
 trainer.train(["where can i find", "Find what?"])
-trainer.train(["open maps", "maps is at your command"])
+trainer.train(["open maps", "maps is at your command!"])
 # Response to a wikipedia cmd.
 trainer.train(["wikipedia", "What would you like to know more about?"])
 trainer.train(["wiki", "Hmm, what topic?"])
 # Response to a youtube cmd.
-trainer.train(["youtube", "YouTube is waiting for a query"])
+trainer.train(["youtube", "YouTube is waiting for a query!"])
 trainer.train(["video", "What video?"])
 trainer.train(["i would like to watch a video", "Which one?"])
-trainer.train(["open youtube", "Youtube is at your command"])
+trainer.train(["open youtube", "YouTube is at your command!"])
 # Responses for website request.
-trainer.train(["website", "which website?"])
+trainer.train(["website", "Which website?"])
 trainer.train(["surf the web", "Which website would you like to surf?"])
 trainer.train(["internet", "What would you like to see?"])
-trainer.train(["online", "Online. Waiting on your command"])
+trainer.train(["online", "Online. Waiting on your command!"])
 # Responses for when Eithne is requested to turn off.
 trainer.train(["turn off", "Farewell"])
 trainer.train(["stop listening", "Goodbye"])
@@ -162,7 +162,7 @@ def respond(user_input):
     elif 'youtube' in user_said(user_input):
         query = user_audio(bot_response(user_input))
         youtube(query)
-        eithne_talk('Here are videos for ' + query + ' on youtube')
+        eithne_talk('Here are videos for ' + query + ' on YouTube')
     # Allow user to surf the web.
     elif 'web' in user_said(user_input):
         surf = user_audio(bot_response(user_input))

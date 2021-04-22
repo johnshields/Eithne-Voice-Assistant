@@ -1,20 +1,23 @@
 <h1 align="center">Gesture Based UI Development</h1>
 
 
-<a href="https://www.gmit.ie/" >
+<a href="https://www.gmit.ie/">
 <p align="center"><img src="https://i.ibb.co/f1ZQSkt/logo-gmit.png"
 alt="GMIT Logo" width="500" height="200"/>
 </p></a>
 
 
-<p align="center">John Shields - G00348436</p>
+<H3 align="center">John Shields - G00348436</H3>
 
 ***
 
-<p align="center"><img src="https://bit.ly/2QenPZf" alt="eithne_logo" width="200"/></p>
+<a href="https://github.com/johnshields/Eithne-Voice-Assistant">
+<p align="center"><img src="https://bit.ly/3eqTQ8r" alt="eithne_logo" width="200"/></p>
+</a>
+
+* GitHub Repository URL: https://github.com/johnshields/Eithne-Voice-Assistant
 
 # Overview
-
 Originally for this project, a Virtual Reality detective game was the first choice. This game would have been developed
 with Unity and the Oculus Quest. Unfortunately, due to PC hardware limitations, it was not feasible to develop a
 sufficient game. Many attempts were made to get the game set up, but even basic setups took hours. Being a hectic time
@@ -22,7 +25,6 @@ during the college year, this could not carry on. Time is precious; therefore, i
 project's goal was then altered to be a Voice Assistant in Python with skills enhanced by AI technologies.
 
 # Purpose of the Application
-
 ***Design of the application including the screens of the user interface and how it works. The application can be an
 experimentation process for you, testing how pieces of hardware could interact or be combined with gestures.***
 
@@ -36,6 +38,25 @@ Eithne is programmed to do the following features:
 * YouTube Queries
 * Open any Website with a ``dot com``
 * Historical Events that happened Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
+
+### Google Search Feature
+![google_search](https://user-images.githubusercontent.com/26766163/115704335-27d08980-a363-11eb-9e0b-bd45794fcc7e.png)
+
+### Google Maps Feature
+![maps](https://user-images.githubusercontent.com/26766163/115704402-3dde4a00-a363-11eb-8b2c-09354da9b27d.png)
+
+### Wikipedia Summaries Feature
+![wiki](https://user-images.githubusercontent.com/26766163/115704633-8433a900-a363-11eb-8720-e4b4a0f741cc.png)
+
+### YouTube Queries Feature
+![youtube](https://user-images.githubusercontent.com/26766163/115704566-6d8d5200-a363-11eb-83bd-2949ff73d88e.png)
+
+### Website Feature - Twitter
+![twitter](https://user-images.githubusercontent.com/26766163/115704445-4b93cf80-a363-11eb-80d2-7639cff6c701.png)
+
+### Historical Events Feature
+![history](https://user-images.githubusercontent.com/26766163/115704375-34ed7880-a363-11eb-884b-d75f6cc6e5fb.png)
+
 
 # Gestures of this application
 
@@ -55,6 +76,35 @@ available.***
 elements that you are creating. The architecture must make sense when the gestures, and the hardware are combined.
 Justification is necessary in the documentation for this. You need to include a list of relevant libraries that you used
 in the project.***
+
+## ChatterBot
+Eithne's responses are decided by a machine learning engine called [ChatterBot](https://chatterbot.readthedocs.io/en/stable/index.html).
+ChatterBot is used to train Eithne to respond to user commands for features in the application. 
+The code below shows how the bot takes in a user command and a set response. 
+The bot is designed to respond to multiple commands for each feature.
+
+```python
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
+
+# Set up Eithne as a chat bot.
+eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
+                     logic_adapters=['chatterbot.logic.BestMatch'], database_uri=None)
+# Train the bot.
+trainer = ListTrainer(eithne_bot)
+# Response to a google search cmd.
+trainer.train(["search", "What would you like to search for?"])
+trainer.train(["do a search", "Google is loaded for searching"])
+trainer.train(["google", "Google is waiting for your request"])
+trainer.train(["google search", "search away"])
+trainer.train(["open google", "Google is waiting your command"])
+```
+
+ChatterBot was initially tested with these commands and responds through a command line interaction. 
+This was mainly to test how the bot learns with each command passed in.
+
+### Testing Bot's responses
+![bot](https://user-images.githubusercontent.com/26766163/115707377-9e22bb00-a366-11eb-8b43-c487817f481b.png)
 
 # Conclusions & Recommendations
 

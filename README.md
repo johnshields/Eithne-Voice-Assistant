@@ -21,7 +21,7 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 
-<p align="center"><img src="https://bit.ly/2QenPZf" alt="eithne_logo" width="200"/></p>
+<p align="center"><img src="https://bit.ly/3eqTQ8r" alt="eithne_logo" width="200"/></p>
 
 # About Eithne
 Eithne is voice assistant who is programmed to do the following features: 
