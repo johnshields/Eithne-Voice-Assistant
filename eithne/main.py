@@ -103,7 +103,6 @@ def user_audio(ask=''):
 
         # Listen for user input.
         audio = r.listen(source)
-        r.adjust_for_ambient_noise(source, duration=5.0)
         user_input = ''
 
         # if the configurations are not set up correctly.
@@ -140,7 +139,7 @@ def respond(user_input):
         eithne_talk(about())
     # Allow user to thank Eithne.
     elif 'thank' in user_said(user_input):
-        eithne_talk(bot_response(user_input))
+        eithne_talk(bot_response(user_input))  # Get response from trained bot.
     # Let user do a google search.
     elif 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))

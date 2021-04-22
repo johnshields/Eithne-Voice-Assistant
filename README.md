@@ -21,8 +21,7 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 
-<p align="center"><img src="https://user-images.githubusercontent.com/26766163/115625698-58c5a580-a2f4-11eb-9470-7b4db0bfa62a.png"
-alt="eithne_logo" width="200"/></p>
+<p align="center"><img src="https://bit.ly/2QenPZf" alt="eithne_logo" width="200"/></p>
 
 # About Eithne
 Eithne is voice assistant who is programmed to do the following features: 
@@ -41,7 +40,7 @@ Eithne is voice assistant who is programmed to do the following features:
 * Python [3.8.3](https://www.python.org/downloads/release/python-387/)
 
 ## Clone Repo
-* In  Command Line if you have open a directory of your choice and enter:
+* In your Command Line open/create a directory of your choice and enter:
 ```bash
 $ https://github.com/johnshields/Eithne-Voice-Assistant.git
 $ cd Eithne-Voice-Assistant
@@ -61,5 +60,5 @@ $ python main.py
 Eithne said: Good Evening
 Eithne said: How can I help?
 ```
-
+***
 ###### END OF README

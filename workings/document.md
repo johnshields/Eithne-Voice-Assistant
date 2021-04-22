@@ -11,8 +11,7 @@ alt="GMIT Logo" width="500" height="200"/>
 
 ***
 
-<p align="center"><img src="https://user-images.githubusercontent.com/26766163/115625698-58c5a580-a2f4-11eb-9470-7b4db0bfa62a.png"
-alt="eithne_logo" width="200"/></p>
+<p align="center"><img src="https://bit.ly/2QenPZf" alt="eithne_logo" width="200"/></p>
 
 # Overview
 
