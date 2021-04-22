@@ -172,6 +172,8 @@ def respond(user_input):
     elif 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))
         exit()
+    else:
+        eithne_talk("Sorry I cannot process that command")
 
 
 #  Greet the user depending what time of the day it is.
