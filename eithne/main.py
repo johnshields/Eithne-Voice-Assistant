@@ -36,8 +36,8 @@ trainer = ListTrainer(eithne_bot)
 Training the chat bot with different commands a user could say with responses for Eithne to say.
 #1:= User Command #2:= Bot Response
 """
-# Responses to for an introduction...
-trainer.train(["what is your name", "My name is Eithne. What is yours?!"])
+# Responses for an introduction...
+trainer.train(["what is your name", "My name is Eithne. What is yours?"])
 trainer.train(["who are you", "I'm Eithne. Who are you?"])
 trainer.train(["hi", "Hi my name is Eithne. What is yours?"])
 trainer.train(["hello", "Hello, I'm Eithne. You?"])
@@ -47,22 +47,22 @@ trainer.train(["thank you", "You're welcome!"])
 trainer.train(["thanks", "Don't mention it!"])
 trainer.train(["sound", "No bother!"])
 trainer.train(["cheers", "No problem!"])
-# Responses to a google search cmd.
+# Responses to google search cmds.
 trainer.train(["search", "What would you like to search for?"])
 trainer.train(["do a search", "Google is loaded for searching!"])
 trainer.train(["google", "Google is waiting for your request!"])
 trainer.train(["google search", "Search away!"])
 trainer.train(["open google", "Google is waiting your command!"])
-# Responses to a location cmd.
+# Responses to location cmds.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
 trainer.train(["find location", "where is your next adventure?"])
 trainer.train(["where can i find", "Find what?"])
 trainer.train(["open maps", "maps is at your command!"])
-# Responses to a wikipedia cmd.
+# Responses to wikipedia cmds.
 trainer.train(["wikipedia", "What would you like to know more about?"])
 trainer.train(["wiki", "Hmm, what topic?"])
-# Responses to a youtube cmd.
+# Responses to youtube cmds.
 trainer.train(["youtube", "YouTube is waiting for a query!"])
 trainer.train(["video", "What video?"])
 trainer.train(["i would like to watch a video", "Which one?"])
@@ -144,7 +144,7 @@ def respond(user_input):
     elif 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))
         google(search)
-        eithne_talk(f'Here is what I found for {search} on google')
+        eithne_talk(f'Here is what I found for {search} on Google')
     # Let user find a location.
     elif 'location' in user_said(user_input):
         location = user_audio(bot_response(user_input))
@@ -173,9 +173,9 @@ def respond(user_input):
         eithne_talk(bot_response(user_input))
         exit()
     else:
-        unreachable = ['Sorry I cannot process that command', 'Did you say something?',
-                       'Unreachable command', "Sorry, what was that?", "Does not compute"]
-        message = unreachable[random.randint(0, len(unreachable) - 1)]
+        n = ['Sorry I cannot process that command', 'Did you say something?',
+             'Are you alright?', 'Unreachable command', "Sorry, what was that?", "Does not compute"]
+        message = n[random.randint(0, len(n) - 1)]
         eithne_talk(message)
 
 

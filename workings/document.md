@@ -18,6 +18,7 @@ alt="GMIT Logo" width="500" height="200"/>
 * GitHub Repository URL: https://github.com/johnshields/Eithne-Voice-Assistant
 
 # Overview
+
 Originally for this project, a Virtual Reality detective game was the first choice. This game would have been developed
 with Unity and the Oculus Quest. Unfortunately, due to PC hardware limitations, it was not feasible to develop a
 sufficient game. Many attempts were made to get the game set up, but even basic setups took hours. Being a hectic time
@@ -25,18 +26,21 @@ during the college year, this could not carry on. Time is precious; therefore, i
 project's goal was then altered to be a Voice Assistant in Python with skills enhanced by AI technologies.
 
 # Purpose of the Application
+
 ***Design of the application including the screens of the user interface and how it works. The application can be an
 experimentation process for you, testing how pieces of hardware could interact or be combined with gestures.***
 
-The application designed is a Voice Assistant by the name of Eithne.
-Eithne takes in a voice command and responds to the user depending on the commands (Figure Below).
-The user's voice input is done by a [Speech Recognition](https://pypi.org/project/SpeechRecognition/) import and 
-Eithne's voice comes from the [Google Text-To-Speech](https://pypi.org/project/gTTS/) import.
+The application designed is a Voice Assistant by the name of Eithne. Eithne takes in a voice command from a user and
+responds to the user depending on the commands (Figure Below). The user's voice input is done by
+a [Speech Recognition](https://pypi.org/project/SpeechRecognition/) import and Eithne's voice comes from
+the [Google Text-To-Speech](https://pypi.org/project/gTTS/) import.
 
 ### User Input and Response System
-![user-to-eithne](https://user-images.githubusercontent.com/26766163/115712109-45eeb780-a36c-11eb-9a15-93ea71370f98.png)
+
+![user-to-eithne](https://user-images.githubusercontent.com/26766163/115746073-ed2f1700-a38b-11eb-8d34-0e51c860d5d3.png)
 
 ## Features
+
 Eithne is programmed to do the following features:
 
 * Google Search
@@ -46,32 +50,82 @@ Eithne is programmed to do the following features:
 * Open any Website with a ``dot com``
 * Historical Events that happened Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
 
-See the figures below for demonstrations of how the user interacts with Eithne's features.
+See the figures below for demonstrations of how the user interacts with Eithne's integrated features.
 
 ### Google Search Feature
+
 ![google_search](https://user-images.githubusercontent.com/26766163/115704335-27d08980-a363-11eb-9e0b-bd45794fcc7e.png)
 
 ### Google Maps Feature
+
 ![maps](https://user-images.githubusercontent.com/26766163/115704402-3dde4a00-a363-11eb-8b2c-09354da9b27d.png)
 
 ### Wikipedia Summaries Feature
+
 ![wiki](https://user-images.githubusercontent.com/26766163/115704633-8433a900-a363-11eb-8720-e4b4a0f741cc.png)
 
 ### YouTube Queries Feature
+
 ![youtube](https://user-images.githubusercontent.com/26766163/115704566-6d8d5200-a363-11eb-83bd-2949ff73d88e.png)
 
 ### Website Feature - Twitter
+
 ![twitter](https://user-images.githubusercontent.com/26766163/115704445-4b93cf80-a363-11eb-80d2-7639cff6c701.png)
 
 ### Historical Events Feature
-![history](https://user-images.githubusercontent.com/26766163/115704375-34ed7880-a363-11eb-884b-d75f6cc6e5fb.png)
 
+![history](https://user-images.githubusercontent.com/26766163/115704375-34ed7880-a363-11eb-884b-d75f6cc6e5fb.png)
 
 # Gestures of this application
 
 ***Consider how gestures can be incorporated into the application, providing a justification for the ones that you pick.
 This is an important research element for the project and needs to explain how the gestures fit into the solution you
 are creating.***
+
+The application is entirely controlled by voice. Meaning the gestures implemented are user commands and also what
+Eithne says back to the user. The user controls Eithne by having almost a conversation for each command as they always
+get a response no matter what the user says. Being a voice assistant, the commands had to be pretty open so that they would
+come naturally to the user. In order to achieve this in `user_phrases.py` a function was created to return many possible
+commands a user could say for the features above. Also, there are simple commands for example `Hi`, `Hello`, `Hey` all return
+with a response by Eithne asking for the user's name. 
+For Eithne's responses, a machine learning (ML) mechanism was used to get different responses for each command. The following
+are the programmed commands, but the user is not limited to just these as the ML mechanism can understand similar
+commands to the ones said and still give back a correct response. The ML mechanism will be discussed in far more detail
+in ***Architecture for the solution***.
+
+| User wants to know the VA's name or wants to say hello.|  |
+| :-------------      |:-------------|
+| **User Input**      | **Response** |
+| What is your name?  | My name is Eithne. What is yours? |
+| Who are you?        | I'm Eithne. Who are you? |
+| Hi                  | Hi my name is Eithne. What is yours? |
+| Hello               | Hello, I'm Eithne. You? |
+| Hey                 | Hey yourself! Eithne here. What's your name? |
+
+After the User says their name Eithne will say Hi with the user's name.
+
+For example:
+
+![hi](https://user-images.githubusercontent.com/26766163/115764058-02607180-a39d-11eb-8989-3e00a598ee64.png)
+
+| User wants to thank Eithne.|       |
+| :-------------      |:-------------|
+| **User Input**      | **Response** |
+| Thank you  | You're welcome! |
+| Thanks     | Don't mention it! |
+| Sound      | No bother! |
+| Cheers     | No problem! |
+
+|  User wants do a Google Search.      | |
+| :-------------      |:-------------|
+| **User Input**      | **Response** |
+| Search       | What would you like to search for? |
+| Do a Search  | Google is loaded for searching! |
+| Sound        | Search away! |
+| Cheers       | Google is waiting your command! |
+
+Once Eithne
+
 
 # Hardware used in creating the application
 
@@ -87,10 +141,11 @@ Justification is necessary in the documentation for this. You need to include a 
 in the project.***
 
 ## ChatterBot
-The majority of Eithne's responses are decided by a machine learning engine called [ChatterBot](https://chatterbot.readthedocs.io/en/stable/index.html).
-ChatterBot is used to train Eithne to respond to user commands for features in the application.
-The bot is designed to respond to multiple commands for each feature. 
-The Logic Adapter used for this functionality is `BestMatch`
+
+The majority of Eithne's responses are decided by a machine learning engine
+called [ChatterBot](https://chatterbot.readthedocs.io/en/stable/index.html). ChatterBot is used to train Eithne to
+respond to user commands for features in the application. The bot is designed to respond to multiple commands for each
+feature. The Logic Adapter used for this functionality is `BestMatch`
 The code below shows how the bot is trained with possible user commands and set responses.
 
 ```python
@@ -110,12 +165,12 @@ trainer.train(["google search", "Search away!"])
 trainer.train(["open google", "Google is waiting your command!"])
 ```
 
-ChatterBot was initially tested with these commands and responds through a command line interaction. 
-This was mainly to test how the bot learns with each command passed in. 
-The figure below is a command line interaction with the bot 
-that shows a log output of how it learns as commands are given to it.
+ChatterBot was initially tested with these commands and responds through a command line interaction. This was mainly to
+test how the bot learns with each command passed in. The figure below is a command line interaction with the bot that
+shows a log output of how it learns as commands are given to it.
 
 ### Testing Bot's responses
+
 ![bot](https://user-images.githubusercontent.com/26766163/115707377-9e22bb00-a366-11eb-8b43-c487817f481b.png)
 
 The voiced responses are handled by the function ``bot_response``
