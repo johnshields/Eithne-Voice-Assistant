@@ -25,16 +25,16 @@ def user_said(phrase):
     # User wants to use wiki.
     elif 'wikipedia' in p or 'wiki' in p:
         p = 'wikipedia'
-    # User whats to know what happened today.
+    # User wants to know what happened today.
     elif 'history' in p or 'what happened today' in p or 'history of today' in p or 'happened today' in p or 'today' in p:
         p = 'history'
-    # User wants to search youtube.
+    # User wants to watch a video on YouTube.
     elif 'youtube' in p or 'video' in p or 'i would like to watch a video' in p or 'open youtube' in p:
         p = 'youtube'
     # User wants to surf a website.
     elif 'website' in p or 'surf the web' in p or 'internet' in p or 'online' in p:
         p = 'web'
-    # User wants Eithne to stop listening.
+    # User wants Eithne to stop listening/turn off.
     elif 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
     return p

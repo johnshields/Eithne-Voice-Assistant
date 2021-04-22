@@ -28,7 +28,7 @@ r = sr.Recognizer()
 
 # Set up Eithne as a chat bot.
 eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
-                     logic_adapters=['chatterbot.logic.BestMatch'], database_uri=None)
+                     logic_adapters=['chatterbot.logic.BestMatch'], database_uri='sqlite:///database.db')
 
 # Train the bot.
 trainer = ListTrainer(eithne_bot)
@@ -56,9 +56,9 @@ trainer.train(["open google", "Google is waiting your command!"])
 # Responses to location cmds.
 trainer.train(["location", "What is the location?"])
 trainer.train(["maps", "What place?"])
-trainer.train(["find location", "where is your next adventure?"])
+trainer.train(["find location", "Where is your next adventure?"])
 trainer.train(["where can i find", "Find what?"])
-trainer.train(["open maps", "maps is at your command!"])
+trainer.train(["open maps", "Maps is at your command!"])
 # Responses to wikipedia cmds.
 trainer.train(["wikipedia", "What would you like to know more about?"])
 trainer.train(["wiki", "Hmm, what topic?"])
