@@ -8,7 +8,7 @@ To allow users to have an option of what to say for different commands.
 def user_said(phrase):
     p = phrase
     # User wants to know the VA's name.
-    if 'what is your name' in p or 'who are you' in p:
+    if 'what is your name' in p or 'who are you' in p or 'hi' in p or 'hello' in p or 'hey' in p:
         p = 'name'
     # User wants to know what Eithne can do.
     elif 'tell me about yourself' in p or 'talk about yourself' in p or 'what can you do' in p or 'about' in p:

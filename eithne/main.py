@@ -127,13 +127,13 @@ def user_audio(ask=''):
 
 # Main response controller
 # Allows user and Eithne to talk back and forth.
-# Works with user_said from user_phrases.py, features.py, bot_response and user_audio
+# Works with user_phrases.py, features.py, eithne_talk, bot_response and user_audio
 # Eithne responds to the user based on their request.
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
     if 'name' in user_said(user_input):
         name = user_audio('My name is Eithne. What is yours?')
-        eithne_talk('Hi ' + name)
+        eithne_talk(f'Hi {name}')
     # Allow user to find out more about Eithne.
     elif 'about' in user_said(user_input):
         eithne_talk(about())
@@ -144,36 +144,39 @@ def respond(user_input):
     elif 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))
         google(search)
-        eithne_talk('Here is what I found for ' + search + ' on google')
+        eithne_talk(f'Here is what I found for {search} on google')
     # Let user find a location.
     elif 'location' in user_said(user_input):
         location = user_audio(bot_response(user_input))
         maps(location)
-        eithne_talk('Here is the location of ' + location)
+        eithne_talk(f'Here is the location of {location}')
     # Allow user to use wikipedia.
     elif 'wikipedia' in user_said(user_input):
         wiki = user_audio(bot_response(user_input))
         results = wikipedia.summary(wiki, sentences=3)
-        eithne_talk('According to wikipedia ' + results)
+        eithne_talk(f'According to wikipedia {results}')
     # Tell the User what happened on this day in history.
     elif 'history' == user_said(user_input):
-        eithne_talk('Today ' + on_this_day())
+        eithne_talk(f'Today {on_this_day()}')
     # Allow user to find a video on YouTube.
     elif 'youtube' in user_said(user_input):
         query = user_audio(bot_response(user_input))
         youtube(query)
-        eithne_talk('Here are videos for ' + query + ' on YouTube')
+        eithne_talk(f'Here are videos for {query} on YouTube')
     # Allow user to surf the web.
     elif 'web' in user_said(user_input):
         surf = user_audio(bot_response(user_input))
         websites(surf)
-        eithne_talk(surf + ' opened')
+        eithne_talk(f'{surf} opened')
     # Allow user to stop Eithne.
     elif 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))
         exit()
     else:
-        eithne_talk("Sorry I cannot process that command")
+        unreachable = ['Sorry I cannot process that command', 'Did you say something?',
+                       'Unreachable command', "Sorry, what was that?", "Does not compute"]
+        message = unreachable[random.randint(0, len(unreachable) - 1)]
+        eithne_talk(message)
 
 
 #  Greet the user depending what time of the day it is.
