@@ -192,7 +192,7 @@ def greeting():
 
 # Main function to boot up Eithne and greet the user.
 # Then start a loop to listen in for user input and have Eithne to respond back.
-def eithne():
+def main():
     print('====== Eithne, Voice Assistant ======')
     greeting()
     h = ['How can I help?', 'What would you like to do today?', 'What service do you require?',
@@ -207,4 +207,4 @@ def eithne():
 
 
 if __name__ == "__main__":
-    eithne()
+    main()

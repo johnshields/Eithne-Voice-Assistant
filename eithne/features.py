@@ -25,8 +25,9 @@ def about():
 
 # Function to take in user input and do a google search.
 def google(search):
+    # Set up URL.
     url = f'https://google.com/search?q={search}'
-    wb.get().open(url)
+    wb.get().open(url)  # Open browser with URL
 
 
 # Function to take in user input and use google maps.
@@ -45,9 +46,11 @@ def wiki(wiki_search):
 def on_this_day():
     d = datetime.today().strftime('%d')
     m = datetime.today().strftime('%m')
+    # Set up URL.
     url = f'http://numbersapi.com/{m}/{d}/date'
+    # Do GET request.
     resp = req.get(url)
-    return resp.text
+    return resp.text  # return the response bodies text
 
 
 # Function to take in user input for a youtube search.
