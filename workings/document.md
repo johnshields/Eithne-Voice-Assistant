@@ -13,7 +13,7 @@
 
 ***
 
-# Overview
+# Introduction
 
 Originally for this project, a Virtual Reality detective game was the first choice. This game would have been developed
 with Unity and the Oculus Quest. Unfortunately, due to PC hardware limitations, it was not feasible to develop a
@@ -71,7 +71,7 @@ commands a user could say for the features above. Also, there are simple command
 with a response by Eithne asking for the user's name.
 For Eithne's responses, a machine learning (ML) mechanism was used to get different responses for each command. The following are the programmed commands, but the user is not limited to just these as the ML mechanism can understand similar commands to the ones said and still give back a response. The ML mechanism will be discussed in far more detail in ***Architecture of the Application***.
 
-For the features Google Search, Google Maps, Wikipedia, YouTube Queries and Website the user is required to say two commands. On for activating the feature and one for controlling what they want the feature to do. There are figures under the commands for these features for further explanation.
+For the features Google Search, Google Maps, Wikipedia, YouTube Queries and Website the user is required to say two commands. One for activating the feature and one for controlling what they want the feature to do. There are figures under the commands for these features for further explanation.
 
 ## Gesture Commands
 
@@ -133,13 +133,12 @@ After the User says their name Eithne will say Hi with the user's name (Figure b
 
 ![gbh](https://user-images.githubusercontent.com/26766163/115769907-ffb54a80-a3a3-11eb-8d35-888c5f8a5758.png)
 
-|  User wants to know what happened today.     | |
+|  User wants to know what happened today in history.     | |
 | :-------------      |:-------------|
 | **User Input**      | **Response** |
-| History                               | Historical events that happened today... |
+| History                               | Historical event that happened today... |
 | What happened today?                  |              ^^                 |
 | History of today                      |              ^^                 |
-| Historical event                      |              ^^                 |
 
 |  User wants to watch a video on YouTube.      | |
 | :-------------      |:-------------|
@@ -172,24 +171,18 @@ After the User says their name Eithne will say Hi with the user's name (Figure b
 <br><br><br><br><br><br>
 
 # Architecture of Application
-The applications design consists of three controllers. ``main.py`` ``user_phrases.py`` and ``features.py`` (Figure Below).
-Main handles the integrations of user voice input,
-Eithne's responses and also trains a chatbot for Eithne's responses.
-User Phrases sets up initial commands for a user to say.
-Feature handles opening the browser for Websites, Google Search, Maps and YouTube, Wikipedia and Historical events requests.  
+The applications design consists of three controllers. ``main.py`` ``user_phrases.py`` and ``features.py`` (Figure Below). Main handles the integrations of user voice input, Eithne's responses and also trains a chatbot for Eithne's responses. User Phrases sets up initial commands for a user to say. Feature handles opening the browser for Websites, Google Search, Maps and YouTube, Wikipedia and Historical events requests.  
 
 ### Controllers Diagram
 <img width="400" src="https://user-images.githubusercontent.com/26766163/115792229-cf7ca480-a3c1-11eb-99de-24d327df0dcf.png" alt="controllers"/>
 
 ## User Interaction
-The user's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`,
-`features.py`, `eithne_talk`, `bot_response` and `user_audio` from `main.py`
+The user's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`, `features.py`, `eithne_talk`, `bot_response` and `user_audio` from `main.py`.
 
 ### Response Controller
 <img width="500" src="https://user-images.githubusercontent.com/26766163/115792209-c4c20f80-a3c1-11eb-82b9-ddfb98ac4a55.png" alt="resp"/>
 
-The user's input is taken in by the function `user_audio` (Code below).
-This creates a microphone instance for the user. This is then set up to listen and recognizes speech. It tries to listen for a user input if there was none, or it was unintelligible the user gets a response from a print statement, and an else condition from the function `respond` that makes Eithne alert the user for invalid inputs.
+The user's input is taken in by the function `user_audio` (Code below). This creates a microphone instance for the user. This is then set up to listen and recognizes speech. It tries to listen for a user input if there was none, or it was unintelligible the user gets a response from a print statement, and an else condition from the function `respond` that makes Eithne alert the user for invalid inputs.
 
 <br>
 
@@ -261,11 +254,13 @@ trainer.train(["google search", "Search away!"])
 trainer.train(["open google", "Google is waiting your command!"])
 ```
 
-ChatterBot was initially tested with these commands and responds through a command line interaction. This was mainly to test how the bot learns with each command passed in. The figure below is a command line interaction with the bot that shows a log output of how it learns as commands are given to it.
+ChatterBot was initially tested with these commands and responded through a command-line interaction. This testing was mainly to test how the bot learns with each command passed in. The figure below is a command-line interaction with the bot that shows a log output of how it learns as commands are given.
 
 ### Testing Bot's responses
 
 ![bot](https://user-images.githubusercontent.com/26766163/115777593-67bc5e80-a3ad-11eb-859c-c8c4a2b92a55.png)
+
+The learned responses are stored into a SQLite database to continuously learn from the user and improve the application.
 
 The voiced responses are handled by the function ``bot_response``. This function is used to return a response for Eithne to say depending on the command the user said.
 
@@ -276,22 +271,20 @@ def bot_response(cmd):
     return str(response)
 ```
 
-#### Relevant Libraries used:
+# Conclusions & Recommendations
+Being a Voice focused application, the hardware scope used in development is small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for a user. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills as I am a lot more comfortable with it and use it much more in the future.
+
+<br><br>
+
+# References
+* [Build A Python Speech Assistant App](https://youtu.be/x8xjj6cR9Nc)
+* [How to build your own AI personal assistant using Python](https://bit.ly/3auyANP)
+* [The Ultimate Guide To Speech Recognition With Python](https://realpython.com/python-speech-recognition/)
+* [ChatterBot Documentation](https://chatterbot.readthedocs.io/en/stable/index.html#)
+
+### Relevant Libraries used:
 * [Speech Recognition ~= 3.8.1](https://pypi.org/project/SpeechRecognition/)
 * [Google Text-To-Speech ~= 2.2.2](https://pypi.org/project/gTTS/)
 * [Play Sound ~= 1.2.2](https://pypi.org/project/playsound/)
 * [ChatterBot ~= 1.0.4](https://chatterbot.readthedocs.io/en/stable/index.html)
 * [PyAudio ~= 0.2.11](https://pypi.org/project/PyAudio/)
-
-<br><br><br><br>
-
-# Conclusions & Recommendations
-Being a Voice focused application, the hardware scope used in development is small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all I believe the application was a success and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for a user. I am very glad I chose Python for the application as before this I have never used it immensely. I can now add Python to my skills as I am a lot more comfortable with it and use it much more in the future.   
-
-
-# References
-
-* [Build A Python Speech Assistant App](https://youtu.be/x8xjj6cR9Nc)
-* [How to build your own AI personal assistant using Python](https://bit.ly/3auyANP)
-* [The Ultimate Guide To Speech Recognition With Python](https://realpython.com/python-speech-recognition/)
-* [ChatterBot](https://chatterbot.readthedocs.io/en/stable/index.html#)

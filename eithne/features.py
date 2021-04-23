@@ -1,7 +1,7 @@
 """
 @author John Shields - G00348436
 Features Controller
-Eithne's features for google, maps, history, youtube and websites.
+Eithne's features for google, maps, wikipedia, history, youtube and websites.
 
 References:
 https://youtu.be/x8xjj6cR9Nc
@@ -11,6 +11,7 @@ import webbrowser as wb
 from datetime import datetime
 
 import requests as req
+import wikipedia
 
 
 # Function to return a description of Eithne.
@@ -32,6 +33,12 @@ def google(search):
 def maps(location):
     url = f'https://google.nl/maps/place/{location}/&amp;'
     wb.get().open(url)
+
+
+# Function to take in user input and return a wikipedia summary.
+def wiki(wiki_search):
+    result = wikipedia.summary(wiki_search, sentences=3)
+    return result
 
 
 # Function to get Historical Events that happened Today.

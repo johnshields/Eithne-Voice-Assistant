@@ -25,7 +25,7 @@ def user_said(phrase):
     # User wants to use wiki.
     elif 'wikipedia' in p or 'wiki' in p:
         p = 'wikipedia'
-    # User wants to know what happened today.
+    # User wants to know what happened today in history.
     elif 'history' in p or 'what happened today' in p or 'history of today' in p or 'happened today' in p or 'today' in p:
         p = 'history'
     # User wants to watch a video on YouTube.

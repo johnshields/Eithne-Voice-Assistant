@@ -15,12 +15,11 @@ import time
 
 import playsound
 import speech_recognition as sr
-import wikipedia
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from gtts import gTTS
 
-from features import google, maps, on_this_day, youtube, websites, about
+from features import *
 from user_phrases import user_said
 
 # Load in recognizer.
@@ -85,7 +84,7 @@ def bot_response(cmd):
     return str(response)
 
 
-# Function to use google text to speech for Eithne's voice.
+# Function to use Google text-to-speech for Eithne's voice.
 def eithne_talk(audio_string):
     # Set up Eithne's vocals.
     talk = gTTS(text=audio_string, lang='en')
@@ -99,7 +98,9 @@ def eithne_talk(audio_string):
     os.remove(audio_file)
 
 
-# Set up the microphone for the user.
+# User interaction controller
+# Sets up the microphone for the user.
+# Listen for user input, if there is an input return it.
 def user_audio(ask=''):
     # Create a microphone instance.
     with sr.Microphone() as source:
@@ -132,14 +133,14 @@ def user_audio(ask=''):
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
     if 'name' in user_said(user_input):
-        name = user_audio(bot_response(user_input))
+        name = user_audio(bot_response(user_input))  # Get response from trained bot.
         eithne_talk(f'Hi {name}')
     # Allow user to find out more about Eithne.
     elif 'about' in user_said(user_input):
         eithne_talk(about())
     # Allow user to thank Eithne.
     elif 'thank' in user_said(user_input):
-        eithne_talk(bot_response(user_input))  # Get response from trained bot.
+        eithne_talk(bot_response(user_input))
     # Let user do a google search.
     elif 'search' in user_said(user_input):
         search = user_audio(bot_response(user_input))
@@ -152,9 +153,8 @@ def respond(user_input):
         eithne_talk(f'Here is the location of {location}')
     # Allow user to use wikipedia.
     elif 'wikipedia' in user_said(user_input):
-        wiki = user_audio(bot_response(user_input))
-        results = wikipedia.summary(wiki, sentences=3)
-        eithne_talk(f'According to wikipedia {results}')
+        wiki_sum = user_audio(bot_response(user_input))
+        eithne_talk(f'According to wikipedia {wiki(wiki_sum)}')
     # Tell the User what happened on this day in history.
     elif 'history' == user_said(user_input):
         eithne_talk(f'Today {on_this_day()}')
@@ -179,7 +179,7 @@ def respond(user_input):
         eithne_talk(message)
 
 
-#  Greet the user depending what time of the day it is.
+# Greet the user depending what time of the day it is.
 def greeting():
     hour = dt.datetime.now().hour
     if 0 <= hour < 12:
