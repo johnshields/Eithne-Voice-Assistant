@@ -94,7 +94,7 @@ def eithne_talk(audio_string):
     talk.save(audio_file)
     # Play what Eithne said then remove the mp3.
     playsound.playsound(audio_file)
-    print('Eithne said:', audio_string)
+    print(f'Eithne said: {audio_string}')
     os.remove(audio_file)
 
 
@@ -122,7 +122,7 @@ def user_audio(ask=''):
             # Speech Recognition is unreachable or unresponsive.
             eithne_talk('Sorry, it appears that the speech recognition service is down.')
             exit()
-        print('$', user_input.lower())
+        print(f'$ {user_input.lower()}')
         return user_input.lower()  # Return the user's input.
 
 

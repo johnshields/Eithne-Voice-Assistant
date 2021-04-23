@@ -22,7 +22,7 @@ during the college year, this could not carry on. Time is precious; therefore, i
 project's goal was then altered to be a Voice Assistant in Python with skills enhanced by AI technologies.
 
 # Purpose of the Application
-The application designed is a Voice Assistant by the name of Eithne. Eithne takes in a voice command from a user and responds to the user depending on the commands (Figure Below). The user's voice input is done by a Speech Recognition API and Eithne's voice comes from the Google Text-To-Speech API. The skills/features Eithne performs are shown with figures below.
+The application designed is a Voice Assistant by the name of Eithne. Eithne takes in a voice command from a user and responds to the User depending on the commands (Figure Below). The User's voice input is done by a Speech Recognition API, and Eithne's voice comes from the Google Text-To-Speech API. The skills/features Eithne performs are shown with figures in the ***Features*** subsection.
 
 ### User Input and Response System
 
@@ -41,7 +41,7 @@ Eithne is programmed to do the following features:
 * Open any Website with a ``dot com``
 * Historical Events that happened Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
 
-See the figures below for demonstrations of how the user interacts with Eithne's integrated features.
+See the figures below for demonstrations of how the User interacts with Eithne's integrated features.
 
 ### Google Search Feature
 <img width="800" src="https://user-images.githubusercontent.com/26766163/115704335-27d08980-a363-11eb-9e0b-bd45794fcc7e.png" alt="g_s"/>
@@ -64,14 +64,14 @@ See the figures below for demonstrations of how the user interacts with Eithne's
 
 # Gestures of the Application
 The application is entirely controlled by voice. Meaning the gestures implemented are user commands and also what
-Eithne says back to the user. The user controls Eithne by having almost a conversation for each command as they always
-get a response no matter what the user says. Being a voice assistant, the commands had to be pretty open so that they would
-come naturally to the user. In order to achieve this in `user_phrases.py` a function was created to return many possible
-commands a user could say for the features above. Also, there are simple commands for example `Hi`, `Hello`, `Hey` all return
-with a response by Eithne asking for the user's name.
-For Eithne's responses, a machine learning (ML) mechanism was used to get different responses for each command. The following are the programmed commands, but the user is not limited to just these as the ML mechanism can understand similar commands to the ones said and still give back a response. The ML mechanism will be discussed in far more detail in ***Architecture of the Application***.
+Eithne says back to the User. The User controls Eithne by having almost a conversation for each command as they always
+get a response no matter what the User says. Being a voice assistant, the commands had to be pretty open so that they would
+come naturally to the User. In order to achieve this in `user_phrases.py` a function was created to return many possible
+commands a user could say for the features above. Also, there are simple commands, for example, `Hi`, `Hello`, `Hey` all return
+with a response by Eithne asking for the User's name.
+For Eithne's responses, a machine learning (ML) mechanism was used to get different responses for each command. The following are the programmed commands, but the User is not limited to just these as the ML mechanism can understand similar commands to the ones said and still give back a response. The ML mechanism will be discussed in far more detail in ***Architecture of the Application***.
 
-For the features Google Search, Google Maps, Wikipedia, YouTube Queries and Website the user is required to say two commands. One for activating the feature and one for controlling what they want the feature to do. There are figures under the commands for these features for further explanation.
+For the features, Google Search, Google Maps, Wikipedia, YouTube Queries, and Website, the User is required to say two commands. One for activating the feature and one for controlling what they want the feature to do. There are figures under the commands for these features for further explanation.
 
 ## Gesture Commands
 
@@ -84,7 +84,7 @@ For the features Google Search, Google Maps, Wikipedia, YouTube Queries and Webs
 | Hello               | Hello, I'm Eithne. You? |
 | Hey                 | Hey yourself! Eithne here. What's your name? |
 
-After the User says their name Eithne will say Hi with the user's name (Figure below).
+After the User says, their name Eithne will say Hi with the User's name (Figure below).
 
 ![hi](https://user-images.githubusercontent.com/26766163/115764058-02607180-a39d-11eb-8989-3e00a598ee64.png)
 
@@ -104,7 +104,7 @@ After the User says their name Eithne will say Hi with the user's name (Figure b
 | Sound      | No bother! |
 | Cheers     | No problem! |
 
-|  User wants do a Google Search.      | |
+|  User wants to do a Google Search.      | |
 | :-------------      |:-------------|
 | **User Input**      | **Response** |
 | Search       | What would you like to search for? |
@@ -171,24 +171,23 @@ After the User says their name Eithne will say Hi with the user's name (Figure b
 <br><br><br><br><br><br>
 
 # Architecture of Application
-The applications design consists of three controllers. ``main.py`` ``user_phrases.py`` and ``features.py`` (Figure Below). Main handles the integrations of user voice input, Eithne's responses and also trains a chatbot for Eithne's responses. User Phrases sets up initial commands for a user to say. Feature handles opening the browser for Websites, Google Search, Maps and YouTube, Wikipedia and Historical events requests.  
+The application's design consists of three controllers. ``main.py`` ``user_phrases.py`` and ``features.py`` (Figure Below). Main handles the integrations of user voice input, Eithne's responses and also trains a chatbot for Eithne's responses. User Phrases sets up initial commands for a user to say. Feature handles opening the browser for Websites, Google Search, Maps and YouTube, Wikipedia, and Historical events requests.  
 
 ### Controllers Diagram
 <img width="400" src="https://user-images.githubusercontent.com/26766163/115792229-cf7ca480-a3c1-11eb-99de-24d327df0dcf.png" alt="controllers"/>
 
 ## User Interaction
-The user's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`, `features.py`, `eithne_talk`, `bot_response` and `user_audio` from `main.py`.
+The User's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`, `features.py`, `eithne_talk`, `bot_response` and `user_audio` from `main.py`.
 
 ### Response Controller
 <img width="500" src="https://user-images.githubusercontent.com/26766163/115792209-c4c20f80-a3c1-11eb-82b9-ddfb98ac4a55.png" alt="resp"/>
 
-The user's input is taken in by the function `user_audio` (Code below). This creates a microphone instance for the user. This is then set up to listen and recognizes speech. It tries to listen for a user input if there was none, or it was unintelligible the user gets a response from a print statement, and an else condition from the function `respond` that makes Eithne alert the user for invalid inputs.
+The User's input is taken in by the function `user_audio` (Code below). This creates a microphone instance for the User. This is then set up to listen and recognizes speech. It tries to listen for user input if there was none or it was unintelligible. The User gets a response from a print statement and an else condition from the function `respond` that makes Eithne alert the User for invalid inputs.
 
 <br>
 
-### Function for recognizing user input.
+### Function for recognizing User Input
 ```python
-# Set up the microphone for the user.
 def user_audio(ask=''):
     # Create a microphone instance.
     with sr.Microphone() as source:
@@ -210,11 +209,11 @@ def user_audio(ask=''):
             # Speech Recognition is unreachable or unresponsive.
             eithne_talk('Sorry, it appears that the speech recognition service is down.')
             exit()
-        print('$', user_input.lower())
+        print(f'$ {user_input.lower()}')
         return user_input.lower()  # Return the user's input.
 ```
 
-### Code Example for user greeting Eithne
+### Code of user commands for greeting Eithne
 ```python
 def user_said(phrase):
     p = phrase
@@ -260,9 +259,9 @@ ChatterBot was initially tested with these commands and responded through a comm
 
 ![bot](https://user-images.githubusercontent.com/26766163/115777593-67bc5e80-a3ad-11eb-859c-c8c4a2b92a55.png)
 
-The learned responses are stored into a SQLite database to continuously learn from the user and improve the application.
+The learned responses are stored in a SQLite database to learn from the User and improve the application continuously.
 
-The voiced responses are handled by the function ``bot_response``. This function is used to return a response for Eithne to say depending on the command the user said.
+The voiced responses are handled by the function ``bot_response``. This function is used to return a response for Eithne to say depending on the command the User said.
 
 ```python
 # Function to take in a user command and return a response from the bot.
@@ -272,7 +271,7 @@ def bot_response(cmd):
 ```
 
 # Conclusions & Recommendations
-Being a Voice focused application, the hardware scope used in development is small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for a user. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills as I am a lot more comfortable with it and use it much more in the future.
+Being a voice-focused application, the hardware scope used in development is small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for the User. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills as I am a lot more comfortable with it and use it much more in the future.
 
 <br><br>
 
