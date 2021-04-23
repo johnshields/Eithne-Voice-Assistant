@@ -125,9 +125,9 @@ def user_audio(ask=''):
         return user_input.lower()  # Return the user's input.
 
 
-# Main response controller
+# Response controller
 # Allows user and Eithne to talk back and forth.
-# Works with user_phrases.py, features.py, eithne_talk, bot_response and user_audio
+# Works with user_phrases.py, features.py, eithne_talk, bot_response and user_audio.
 # Eithne responds to the user based on their request.
 def respond(user_input):
     # Allow user to ask for VA's name then say 'Hi' with the user's said name.
