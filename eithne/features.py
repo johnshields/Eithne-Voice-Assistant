@@ -50,7 +50,7 @@ def on_this_day():
     url = f'http://numbersapi.com/{m}/{d}/date'
     # Do GET request.
     resp = req.get(url)
-    return resp.text  # return the response bodies text
+    return resp.text  # return the response body's text
 
 
 # Function to take in user input for a youtube search.
