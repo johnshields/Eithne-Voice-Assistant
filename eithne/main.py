@@ -195,9 +195,9 @@ def greeting():
 def eithne():
     print('====== Eithne, Voice Assistant ======')
     greeting()
-    help_ful = ['How can I help?', 'What would you like to do today?', 'What service do you require?',
-                "I'm listening", "What can I do for you?", "Thanks for waking me up!"]
-    message = help_ful[random.randint(0, len(help_ful) - 1)]
+    h = ['How can I help?', 'What would you like to do today?', 'What service do you require?',
+         "I'm listening", "What can I do for you?", "Thanks for waking me up!"]
+    message = h[random.randint(0, len(h) - 1)]
     eithne_talk(message)
     time.sleep(1)
     # Start up interaction.
