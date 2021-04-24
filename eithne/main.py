@@ -12,7 +12,6 @@ import datetime as dt
 import os
 import random
 import time
-import pyjokes as jks
 
 import playsound
 import speech_recognition as sr
@@ -168,9 +167,6 @@ def respond(user_input):
         surf = user_audio(bot_response(user_input))
         websites(surf)
         eithne_talk(f'{surf} opened')
-    # Allow the user to hear a joke.
-    elif 'joke' in user_said(user_input):
-        eithne_talk(jks.get_joke())
     # Allow user to stop Eithne.
     elif 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))

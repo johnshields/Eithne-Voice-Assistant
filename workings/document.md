@@ -202,6 +202,8 @@ def user_audio(ask=''):
         if ask:
             eithne_talk(ask)
 
+        # Load in recognizer.
+        r = sr.Recognizer()
         # Listen for user input.
         audio = r.listen(source)
         user_input = ''
@@ -321,14 +323,14 @@ def on_this_day():
 ```
 
 # Issues encountered
-Apart from the issues with the original Virtual Reality game idea, Eithne was a much more achievable goal. It was a perfect idea for improvisation as it was tough to know if the VR game would have even had its basic functionality before the project's deadline.
-
-Python's Speech Recognition API requires a strong internet connection, meaning at times, it can take a while to recognize user input if there is a poor connection. This issue did cause some setbacks but not enough to disturb the development of the application. ChatterBot did take some time to train and test for accurate responses for user input. However, in the end, ChatterBot proved to be an excellent tool to have in the application.
+Apart from the issues with the original Virtual Reality game idea, Eithne was a much more achievable goal. It was a perfect idea for improvisation as it was tough to know if the VR game would have even had its basic functionality before the project's deadline. ChatterBot did take some time to train and test for accurate responses for user input. However, in the end, ChatterBot proved to be an excellent tool to have in the application.
 
 The application has been thoroughly tested to make sure every possible issue a user could experience is very limited or none at all. The Test Sheet is located [here](https://github.com/johnshields/Eithne-Voice-Assistant/blob/main/workings/eithne_test_sheet.xlsx).
 
 # Conclusions & Recommendations
-Being a voice-focused application, the hardware scope used in development was small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for the User. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills and use it much more in the future as I am now a lot more comfortable with it. Having the issue with the VR game made me realize I have to do far more research before thinking of an idea for a project with an open brief. Many hours were wasted trying to get the game set up and have it achieve something. All this time wasted could have been avoided if I researched the computer hardware expectations wholly to develop a VR game instead of jumping headfirst into development and assuming everything would fall into place. Thus a very important lesson was learnt with this project.
+Being a voice-focused application, the hardware scope used in development was small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for the User. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills and use it much more in the future as I am now a lot more comfortable with it. Having the issue with the VR game made me realize I have to do far more research before thinking of an idea for a project with an open brief. Many hours were wasted trying to get the game set up and have it achieve something. All this time wasted could have been avoided if I researched the computer hardware expectations wholly to develop a VR game instead of jumping headfirst into development and assuming everything would fall into place. Thus, a very important lesson was learnt with this project.
+
+<br><br>
 
 # References
 * [Intelligent Personal Assistants Automated Personal Assistants](https://bit.ly/2QqGEZa)
