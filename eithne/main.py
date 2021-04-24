@@ -12,6 +12,7 @@ import datetime as dt
 import os
 import random
 import time
+import pyjokes as jks
 
 import playsound
 import speech_recognition as sr
@@ -21,9 +22,6 @@ from gtts import gTTS
 
 from features import *
 from user_phrases import user_said
-
-# Load in recognizer.
-r = sr.Recognizer()
 
 # Set up Eithne as a chat bot.
 eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
@@ -108,6 +106,8 @@ def user_audio(ask=''):
         if ask:
             eithne_talk(ask)
 
+        # Load in recognizer.
+        r = sr.Recognizer()
         # Listen for user input.
         audio = r.listen(source)
         user_input = ''
@@ -168,6 +168,9 @@ def respond(user_input):
         surf = user_audio(bot_response(user_input))
         websites(surf)
         eithne_talk(f'{surf} opened')
+    # Allow the user to hear a joke.
+    elif 'joke' in user_said(user_input):
+        eithne_talk(jks.get_joke())
     # Allow user to stop Eithne.
     elif 'stop' in user_said(user_input):
         eithne_talk(bot_response(user_input))
