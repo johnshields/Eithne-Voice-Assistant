@@ -37,7 +37,4 @@ def user_said(phrase):
     # User wants Eithne to stop listening/turn off.
     elif 'turn off' in p or 'stop listening' in p or 'exit' in p or 'quit' in p:
         p = 'stop'
-    # User wants to hear a joke.
-    elif 'joke' in p or 'tell me a joke':
-        p = 'joke'
     return p
