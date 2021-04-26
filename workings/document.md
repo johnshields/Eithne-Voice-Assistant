@@ -13,15 +13,14 @@
 
 ***
 
-# Introduction
+# 1. Introduction
 
-Originally for this project, a Virtual Reality detective game was the first choice. This game would have been developed with Unity and the Oculus Quest. Unfortunately, due to computer hardware limitations, it was not feasible to develop a
-sufficient game. Many attempts were made to get the game set up, but even basic setups took hours. Being a hectic time during the college year, this could not carry on. Time is precious; therefore, improvisation had to be made. The project's goal was then altered to be a Voice Assistant in Python with skills enhanced by AI technologies.
+Originally for this project, a Virtual Reality detective game was the first choice. This game would have been developed with Unity and the Oculus Quest. Unfortunately, due to computer hardware limitations, it was not feasible to develop a sufficient game. Many attempts were made to get the game set up, but even basic setups took hours. Being a hectic time during the college year, this could not carry on. Time is precious; therefore, improvisation had to be made. The project's goal was then altered to be a Voice Assistant in Python with speech recognition and skills enhanced by AI technologies.
 
 # Voice Assistants
-Voice assistants are software programs that have been designed to assist users with basic tasks using an inbuilt natural language user interface. The most common VAs embedded in smartphones or dedicated home speakers are Apple's Siri, Amazon's Alexa, Microsoft's Cortana, and Google's Assistant. Users can use voice commands to ask their assistants questions, monitor home automation systems and media playback, and handle other essential tasks, including skills such as application control and information gathering. [[1]](https://bit.ly/2QqGEZa) & [[2]](https://www.tandfonline.com/doi/abs/10.1080/02763869.2018.1404391?journalCode=wmrs20)
+Voice assistants are software programs that have been designed to assist users with basic tasks using an inbuilt natural language user interface. The most common VAs embedded in smartphones or dedicated home speakers are Apple's Siri, Amazon's Alexa, Microsoft's Cortana, and Google's Assistant. Users can use voice commands to ask their assistants questions, monitor home automation systems, media playback, application control and information gathering. [[1]](https://bit.ly/2QqGEZa) & [[2]](https://www.tandfonline.com/doi/abs/10.1080/02763869.2018.1404391?journalCode=wmrs20)
 
-# Purpose of the Application
+# 2. Purpose of the Application
 The application designed is a Voice Assistant by the name of Eithne. Eithne takes in a voice command from a user and responds to the User depending on the commands (Figure Below). The User's voice input is done by a Speech Recognition API, and Eithne's voice comes from the Google Text-To-Speech API. The skills/features Eithne performs are shown with figures in the ***Features*** subsection.
 
 ### User Input and Response System
@@ -49,7 +48,7 @@ See the figures below for demonstrations of how the User interacts with Eithne's
 
 
 ### Google Maps Feature
-<img width="800" src="https://user-images.githubusercontent.com/26766163/115704402-3dde4a00-a363-11eb-8b2c-09354da9b27d.png" alt="maps"/>
+<img width="800" src="https://user-images.githubusercontent.com/26766163/116072773-72b21000-a687-11eb-877b-73b856887578.png" alt="maps"/>
 
 ### Wikipedia Summaries Feature
 <img width="800" src="https://user-images.githubusercontent.com/26766163/115704633-8433a900-a363-11eb-8720-e4b4a0f741cc.png" alt="wiki"/>
@@ -63,7 +62,7 @@ See the figures below for demonstrations of how the User interacts with Eithne's
 ### Historical Events Feature
 ![history](https://user-images.githubusercontent.com/26766163/115704375-34ed7880-a363-11eb-884b-d75f6cc6e5fb.png)
 
-# Gestures of the Application
+# 3. Gestures of the Application
 The application is entirely controlled by voice. Meaning the gestures implemented are user commands and also what
 Eithne says back to the User. The User controls Eithne by having almost a conversation for each command as they always
 get a response no matter what the User says. Being a voice assistant, the commands had to be pretty open so that they would
@@ -173,7 +172,7 @@ After the User says, their name Eithne will say Hi with the User's name (Figure 
 
 <br><br><br><br><br><br>
 
-# Architecture of Application
+# 4. Architecture of Application
 The application's design consists of three controllers. ``main.py`` ``user_phrases.py`` and ``features.py`` (Figure Below). Main handles the integrations of user voice input, Eithne's responses and also trains a chatbot for Eithne's responses. User Phrases sets up initial commands for a user to say. Feature handles opening the browser for Websites, Google Search, Maps and YouTube, Wikipedia, and Historical events requests.  
 
 ### Controllers Diagram
@@ -182,7 +181,7 @@ The application's design consists of three controllers. ``main.py`` ``user_phras
 </p>
 
 ## User Interaction
-The User's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`, `features.py`, `eithne_talk`, `bot_response` and `user_audio` from `main.py`.
+The User's main interaction with Eithne is controlled by the functions `user_said` from `user_phrases.py`, all the functions in `features.py`, `eithne_talk`, `bot_response` `respond` and `user_audio` from `main.py`.
 
 ### Response Controller
 <p align="center">
@@ -240,7 +239,7 @@ def respond(user_input):
         eithne_talk(f'Hi {name}')
 ```
 
-#### Code for invalid responses
+#### Code for invalid inputs
 ```python
 else:
     n = ['Sorry I cannot process that command', 'Did you say something?',
@@ -322,12 +321,12 @@ def on_this_day():
     return resp.text  # return the response body's text
 ```
 
-# Issues encountered
+# 5. Issues encountered
 Apart from the issues with the original Virtual Reality game idea, Eithne was a much more achievable goal. It was a perfect idea for improvisation as it was tough to know if the VR game would have even had its basic functionality before the project's deadline. ChatterBot did take some time to train and test for accurate responses for user input. However, in the end, ChatterBot proved to be an excellent tool to have in the application.
 
 The application has been thoroughly tested to make sure every possible issue a user could experience is very limited or none at all. The Test Sheet is located [here](https://github.com/johnshields/Eithne-Voice-Assistant/blob/main/workings/eithne_test_sheet.xlsx).
 
-# Conclusions & Recommendations
+# 6. Conclusions & Recommendations
 Being a voice-focused application, the hardware scope used in development was small, consisting of only a Microphone. A Raspberry Pi would have been a great addition but unfortunately, due to the Voice Assistant idea being an improvisation. There was not enough time to acquire one before the project's deadline. All in all, I believe the application was a success, and I am pleased with the final product. Mixing gestures with software and hardware is interesting to develop and convenient for the User. I am delighted I chose Python for the application as, before this, I have never used it immensely. I can now add Python to my skills and use it much more in the future as I am now a lot more comfortable with it. Having the issue with the VR game made me realize I have to do far more research before thinking of an idea for a project with an open brief. Many hours were wasted trying to get the game set up and have it achieve something. All this time wasted could have been avoided if I researched the computer hardware expectations wholly to develop a VR game instead of jumping headfirst into development and assuming everything would fall into place. Thus, a very important lesson was learnt with this project.
 
 <br><br>

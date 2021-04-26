@@ -1,5 +1,5 @@
 """
-@author John Shields - G00348436
+@author John Shields
 Main Controller of Eithne.
 
 References:

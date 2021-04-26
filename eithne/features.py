@@ -1,5 +1,5 @@
 """
-@author John Shields - G00348436
+@author John Shields
 Features Controller
 Eithne's features for google, maps, wikipedia, history, youtube and websites.
 

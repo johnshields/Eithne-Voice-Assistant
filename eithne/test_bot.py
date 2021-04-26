@@ -1,5 +1,5 @@
 """
-@author John Shields - G00348436
+@author John Shields 
 Testing Bot from ChatterBot
 Mainly to acquire accurate responses.
 

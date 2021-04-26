@@ -2,4 +2,5 @@ venv/
 .idea/
 *.mp3
 __pycache__/
+# Database automatically creates when ran.
 *.db
