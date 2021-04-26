@@ -239,7 +239,7 @@ def respond(user_input):
         eithne_talk(f'Hi {name}')
 ```
 
-#### Code for invalid inputs
+#### Code of responses for invalid inputs
 ```python
 else:
     n = ['Sorry I cannot process that command', 'Did you say something?',
