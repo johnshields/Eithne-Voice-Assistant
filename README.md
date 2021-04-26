@@ -33,6 +33,8 @@ Eithne is voice assistant who is programmed to do the following features:
 * Open any Website with a ``dot com``
 * Historical Events that happened Today from [numbersapi.com/day/month/date](http://numbersapi.com/04/6/date)
 
+View the Wiki [here](https://github.com/johnshields/Eithne-Voice-Assistant/wiki) for more info.
+
 ***
 # How to run
 ### Requirements

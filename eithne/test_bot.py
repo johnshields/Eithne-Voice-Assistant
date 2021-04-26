@@ -1,5 +1,5 @@
 """
-@author John Shields 
+@author John Shields
 Testing Bot from ChatterBot
 Mainly to acquire accurate responses.
 
