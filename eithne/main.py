@@ -22,6 +22,7 @@ from gtts import gTTS
 from features import *
 from user_phrases import user_said
 
+print('[INFO] Training bot...')
 # Set up Eithne as a chat bot.
 eithne_bot = ChatBot('Eithne Bot', storage_adapter='chatterbot.storage.SQLStorageAdapter',
                      logic_adapters=['chatterbot.logic.BestMatch'], database_uri='sqlite:///database.db')
@@ -73,6 +74,7 @@ trainer.train(["turn off", "Farewell"])
 trainer.train(["stop listening", "Goodbye"])
 trainer.train(["exit", "Good Luck"])
 trainer.train(["quit", "So long"])
+print('[INFO] Training complete.')
 
 
 # Function to take in a user command and return a response from the bot.
